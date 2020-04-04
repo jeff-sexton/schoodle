@@ -21,5 +21,18 @@ module.exports = (db) => {
       });
 
   });
+
+  router.get("/:user_id", (req, res) => {
+    db.getUser(req.params.user_id)
+      .then(data => {
+        res.json({ data });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+
+  });
   return router;
 };
