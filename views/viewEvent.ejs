@@ -13,9 +13,31 @@
   <script type="text/javascript" src="/scripts/app.js"></script>
 </head>
 
-<body>
+<body class="container">
   <%- include('partials/_header') %>
-  <h1>This is event <%= event %></h1>
+  <header>
+    <h1>This is event <%= event %></h1>
+  </header>
+  <main>
+    <section>
+      <div class="card text-center">
+        <div class="card-header">
+          Event: id / url
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">Event Name</h5>
+          <p class="card-text">Event Description</p>
+          <a href="#" class="btn btn-primary">change this to url link copy</a>
+        </div>
+        <div class="card-footer text-muted">
+          footer some agregate data - total attendees / days till event
+        </div>
+      </div>
+    </section>
+    <section>
+      <p>make voting here based on event dates</p>
+    </section>
+  </main>
 </body>
 
 </html>
