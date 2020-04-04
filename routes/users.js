@@ -19,7 +19,6 @@ module.exports = (db) => {
           .status(500)
           .json({ error: err.message });
       });
-
   });
 
   router.get("/:user_id", (req, res) => {
@@ -32,7 +31,22 @@ module.exports = (db) => {
           .status(500)
           .json({ error: err.message });
       });
-
   });
+
+  // Put needs to be tested!!
+  router.put("/:user_id", (req, res) => {
+    const name = req.data.name;
+    const email = req.data.email;
+    db.editUser(req.params.user_id, name, email)
+      .then(data => {
+        res.json({ data });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
   return router;
 };
