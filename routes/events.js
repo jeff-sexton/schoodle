@@ -31,9 +31,9 @@ module.exports = () => {
     //   }],
     // ]
 
-    if (!eventObj) {
-      // error message?
-    }
+    // if (!eventObj) {
+    //   // error message?
+    // }
 
     let userData = {
       name: req.session.user_id,
