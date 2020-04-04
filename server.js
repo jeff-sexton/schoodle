@@ -68,12 +68,12 @@ app.use((req, res, next) => {
 const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
 const createRoutes = require("./routes/create");
-const viewEventRoutes = require("./routes/events");
+const eventsRoutes = require("./routes/events");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/create", createRoutes());
-app.use("/viewEvent", viewEventRoutes());
+app.use("/events", eventsRoutes());
 app.use("/api/users", usersRoutes(userDb));
 app.use("/api/widgets", widgetsRoutes(userDb));
 // Note: mount other resources here, using the same pattern above
