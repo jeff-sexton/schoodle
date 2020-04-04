@@ -105,6 +105,7 @@ B R E A D
 
 - Edit Event
   - POST /events/:id
+  - maybe not now
 
 - Add Event
   - POST /events
@@ -127,6 +128,7 @@ B R E A D
 
 - Delete times
   - POST /times/:id
+  - maybe later
 
 ### Votes
 

@@ -68,7 +68,7 @@ app.use((req, res, next) => {
 const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
 const createRoutes = require("./routes/create");
-const viewEventRoutes = require("./routes/event");
+const viewEventRoutes = require("./routes/events");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
