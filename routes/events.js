@@ -1,7 +1,8 @@
+/* eslint-disable camelcase */
 /*
- * All routes for Users are defined here
- * Since this file is loaded in server.js into api/users,
- *   these routes are mounted onto /users
+ * All routes for Events are defined here
+ * Since this file is loaded in server.js into /Events,
+ *   these routes are mounted onto /Events
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
@@ -9,38 +10,83 @@ const express = require('express');
 const router = express.Router();
 
 module.exports = () => {
-  router.get("/:eventID", (req, res) => {
-    const userObj = req.user;
-    console.log(userObj);
+  router.get("/:event_url", (req, res) => {
+    const user = req.user;
 
-    // call getEventByUrl() - return event obj from db
+    // const user = {
+    //   id: 18,
+    //   name: null,
+    //   email: null
+    // };
 
-    // call getTimeForEvent() - return array of times associated with event id from db
-
-    // caLL getVotesForEvent() - return
-    // [
-    //   {user_id: [
-    //     {vote_id: ...},
-    //     {vote_id: ...},
-    //     {vote_id: ...},
-    //   }],
-    //   {user_id: [
-    //     {vote_id: ...},
-    //     {vote_id: ...},
-    //     {vote_id: ...},
-    //   }],
-    // ]
-
-    // if (!eventObj) {
-    //   // error message?
-    // }
-
-    let userData = {
-      name: req.session.user_id,
-      email: "knowsnth@gmail.com",
-      event: req.params.eventID
+    // const event = getEventByUrl(req.params.event_url);
+    const event = {
+      id: 1,
+      title: 'Party Time',
+      description: 'Event Description',
+      url: 'aaaaaaa',
+      owner_id: 1001
     };
-    res.render("viewEvent", userData);
+
+    if (event) {
+
+      // call getTimesForEvent() - return array of times associated with event id from db
+      const times = [
+        {
+          id: 1,
+          event_id: 1,
+          start_time: '',
+          end_time: '',
+          total_votes: 1
+        },
+        {
+          id: 2,
+          event_id: 1,
+          start_time: '',
+          end_time: '',
+          total_votes: 0
+        },
+        {
+          id: 3,
+          event_id: 1,
+          start_time: '',
+          end_time: '',
+          total_votes: 0
+        }
+      ];
+      // caLL getVotesForEvent() - return
+      const votes = [
+        {
+          id: 1,
+          time_id: 1,
+          user_id: 1001,
+          vote: true
+        },
+        {
+          id: 2,
+          time_id: 1,
+          user_id: 1002,
+          vote: false
+        },
+        {
+          id: 3,
+          time_id: 1,
+          user_id: 1003,
+          vote: null
+        },
+      ];
+
+      const templateVars = {
+        user,
+        event,
+        times,
+        votes
+      };
+      res.render("viewEvent", templateVars);
+    } else {
+      res.send("Event ID required or not found.");
+    }
+
   });
 
   router.get("*", (req, res) => {
@@ -51,8 +97,12 @@ module.exports = () => {
   //post to events '/'
 
 
-    // post
+  // post
   //  generateUrl() - returns url string - localhost:999/events/   = url
+
+  router.post('/', (req, res) => {
+
+  });
 
 
 
