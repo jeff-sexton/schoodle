@@ -11,7 +11,7 @@ const sass       = require("node-sass-middleware");
 const app        = express();
 const morgan     = require('morgan');
 
-const dbFunctions = require('./lib/databaseQueries');
+const userDb = require('./lib/userQueries');
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -35,8 +35,8 @@ const widgetsRoutes = require("./routes/widgets");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use("/api/users", usersRoutes(dbFunctions));
-app.use("/api/widgets", widgetsRoutes(dbFunctions));
+app.use("/api/users", usersRoutes(userDb));
+app.use("/api/widgets", widgetsRoutes(userDb));
 // Note: mount other resources here, using the same pattern above
 
 
