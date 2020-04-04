@@ -6,14 +6,13 @@
  */
 
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
-    db.query(`SELECT * FROM users;`)
+    db.getUsers()
       .then(data => {
-        const users = data.rows;
-        res.json({ users });
+        res.json({ data });
       })
       .catch(err => {
         res
@@ -21,5 +20,33 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+
+  router.get("/:user_id", (req, res) => {
+    db.getUser(req.params.user_id)
+      .then(data => {
+        res.json({ data });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
+  // Put needs to be tested!!
+  router.put("/:user_id", (req, res) => {
+    const name = req.data.name;
+    const email = req.data.email;
+    db.editUser(req.params.user_id, name, email)
+      .then(data => {
+        res.json({ data });
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
   return router;
 };
