@@ -2,16 +2,16 @@
 require('dotenv').config();
 
 // Web server config
-const PORT       = process.env.PORT || 8080;
-const ENV        = process.env.ENV || "development";
-const KEYS       = process.env.KEYS ? [process.env.KEYS] : ['backup default key'];
+const PORT = process.env.PORT || 8080;
+const ENV = process.env.ENV || "development";
+const KEYS = process.env.KEYS ? [process.env.KEYS] : ['backup default key'];
 
-const express          = require("express");
-const bodyParser       = require("body-parser");
-const cookieSession    = require('cookie-session');
-const sass             = require("node-sass-middleware");
-const app              = express();
-const morgan           = require('morgan');
+const express = require("express");
+const bodyParser = require("body-parser");
+const cookieSession = require('cookie-session');
+const sass = require("node-sass-middleware");
+const app = express();
+const morgan = require('morgan');
 
 const userDb = require('./lib/userQueries');
 
@@ -67,9 +67,13 @@ app.use((req, res, next) => {
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
+const createRoutes = require("./routes/create");
+const viewEventRoutes = require("./routes/event");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
+app.use("/create", createRoutes());
+app.use("/viewEvent", viewEventRoutes());
 app.use("/api/users", usersRoutes(userDb));
 app.use("/api/widgets", widgetsRoutes(userDb));
 // Note: mount other resources here, using the same pattern above
@@ -86,7 +90,11 @@ app.get('/login/:id', (req, res) => {
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  res.render("index");
+  let userData = {
+    name: req.session.user_id,
+    email: "knowsnth@gmail.com"
+  };
+  res.render("index", userData);
 });
 
 app.listen(PORT, () => {

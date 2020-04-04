@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Create Event</title>
+
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/bootstrap.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/scripts/app.js"></script>
+</head>
+
+<body class="container">
+  <%- include('partials/_header') %>
+  <header>
+    <h1>Create New Event</h1>
+  </header>
+  <main>
+    <form>
+      <div class="form-group">
+        <label for="formGroupExampleInput">Event Name</label>
+        <input type="text" class="form-control" placeholder="Name your event." required>
+      </div>
+      <div class="form-group">
+        <label for="formGroupExampleInput2">Description</label>
+        <textarea type="text" class="form-control" placeholder="Describe your event." rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="formGroupExampleInput2">Host Name</label>
+        <input type="text" class="form-control" placeholder="Who's hosting?" required>
+      </div>
+      <div class="form-group">
+        <label for="formGroupExampleInput2">Host Email</label>
+        <input type="email" class="form-control" placeholder="@email" required>
+        <small class="form-text text-muted">We'll never share your email with anyone else outside your
+          event.</small>
+      </div>
+      <!-- MAKE dynamic times thing here -->
+      <button type="submit" class="btn btn-primary">Create Event</button>
+    </form>
+  </main>
+</body>
+
+</html>
