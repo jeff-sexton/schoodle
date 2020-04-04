@@ -90,11 +90,11 @@ app.get('/login/:id', (req, res) => {
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  let data = {
-    name: "john snow",
+  let userData = {
+    name: req.session.user_id,
     email: "knowsnth@gmail.com"
   };
-  res.render("index", data);
+  res.render("index", userData);
 });
 
 app.listen(PORT, () => {

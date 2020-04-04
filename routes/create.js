@@ -10,11 +10,11 @@ const router = express.Router();
 
 module.exports = () => {
   router.get("/", (req, res) => {
-    let data = {
-      name: "john snow",
+    let userData = {
+      name: req.session.user_id,
       email: "knowsnth@gmail.com"
-    };
-    res.render("createEvent", data);
+    }
+    res.render("createEvent", userData);
   });
   return router;
 };

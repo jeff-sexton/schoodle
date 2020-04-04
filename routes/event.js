@@ -10,12 +10,12 @@ const router = express.Router();
 
 module.exports = () => {
   router.get("/:eventID", (req, res) => {
-    let data = {
-      name: "john snow",
+    let userData = {
+      name: req.session.user_id,
       email: "knowsnth@gmail.com",
       event: req.params.eventID
     };
-    res.render("viewEvent", data);
+    res.render("viewEvent", userData);
   });
 
   router.get("*", (req, res) => {
