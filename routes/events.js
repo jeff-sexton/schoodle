@@ -1,58 +1,64 @@
+/* eslint-disable camelcase */
 /*
- * All routes for Users are defined here
- * Since this file is loaded in server.js into api/users,
- *   these routes are mounted onto /users
+ * All routes for Events are defined here
+ * Since this file is loaded in server.js into /Events,
+ *   these routes are mounted onto /Events
  * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
  */
 
 const express = require('express');
 const router = express.Router();
 
-module.exports = () => {
-  router.get("/:eventID", (req, res) => {
-    const userObj = req.user;
-    console.log(userObj);
+module.exports = (db) => {
+  router.get("/:event_url", (req, res) => {
+    const user = req.user;
 
-    // call getEventByUrl() - return event obj from db
 
-    // call getTimeForEvent() - return array of times associated with event id from db
 
-    // caLL getVotesForEvent() - return
-    // [
-    //   {user_id: [
-    //     {vote_id: ...},
-    //     {vote_id: ...},
-    //     {vote_id: ...},
-    //   }],
-    //   {user_id: [
-    //     {vote_id: ...},
-    //     {vote_id: ...},
-    //     {vote_id: ...},
-    //   }],
-    // ]
-
-    if (!eventObj) {
-      // error message?
-    }
-
-    let userData = {
-      name: req.session.user_id,
-      email: "knowsnth@gmail.com",
-      event: req.params.eventID
-    };
-    res.render("viewEvent", userData);
+    db.getEventByUrl(req.params.event_url)
+      .then(event => {
+        if (event) {
+          db.getDataForEvent(event, user)
+            .then(data => {
+              console.log('\n***** Promise all result ****** > \n',data, '\n');
+              res.render("viewEvent", data);
+              // res.json(data); // to check data representation
+            })
+            .catch(err => {
+              res
+                .status(500)
+                .json({ error: err.message });
+            });
+        } else {
+          res.send("Event ID required or not found.");
+        }
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
   });
-
-  router.get("*", (req, res) => {
-    res.send("Event ID required or not found.");
-  });
-
 
   //post to events '/'
 
+  // POST to events needs to be tested
 
-    // post
-  //  generateUrl() - returns url string - localhost:999/events/   = url
+  router.post('/', (req, res) => {
+
+
+    const eventDetails = {
+      title: 'req.body?',
+      description: 'req.body?',
+      owner_id: req.user.id
+    };
+
+    db.addEvent(eventDetails)
+      .then(event => {
+        res.redirect(`/events/${event.url}`);
+      });
+
+  });
 
 
 

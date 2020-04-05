@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 // load .env data into process.env
 require('dotenv').config();
 
@@ -13,7 +14,8 @@ const sass = require("node-sass-middleware");
 const app = express();
 const morgan = require('morgan');
 
-const userDb = require('./lib/userQueries');
+const userQueries = require('./lib/userQueries');
+const eventQueries = require('./lib/eventQueries');
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -44,14 +46,20 @@ app.use((req, res, next) => {
   const userId = req.session.user_id;
 
   if (userId) {
-    userDb.getUser(userId)
+    userQueries.getUser(userId)
       .then(user => {
         req.user = user;
         next();
+      })
+      .catch(() => { // complete catch logic for user sessions that are invalid
+        // req.session = null
+        // res
+        //   .status(500)
+        //   .redirect('/');
       });
 
   } else {
-    userDb.addUser()
+    userQueries.addUser()
       .then(user => {
         // assign session
         req.session.user_id = user.id;
@@ -68,14 +76,14 @@ app.use((req, res, next) => {
 const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
 const createRoutes = require("./routes/create");
-const viewEventRoutes = require("./routes/events");
+const eventsRoutes = require("./routes/events");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/create", createRoutes());
-app.use("/viewEvent", viewEventRoutes());
-app.use("/api/users", usersRoutes(userDb));
-app.use("/api/widgets", widgetsRoutes(userDb));
+app.use("/events", eventsRoutes(eventQueries));
+app.use("/api/users", usersRoutes(userQueries));
+app.use("/api/widgets", widgetsRoutes(userQueries));
 // Note: mount other resources here, using the same pattern above
 
 
@@ -90,11 +98,10 @@ app.get('/login/:id', (req, res) => {
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  let userData = {
-    name: req.session.user_id,
-    email: "knowsnth@gmail.com"
-  };
-  res.render("index", userData);
+  const data = {user: req.user};
+
+  res.render("index", data);
+  // res.json(user); // to check data representation
 });
 
 app.listen(PORT, () => {
