@@ -10,19 +10,10 @@ const router = express.Router();
 
 module.exports = () => {
   router.get("/", (req, res) => {
-    const userObj = req.user;
-    console.log(userObj);
-    const templateVars = {
-      user: {
-        name: req.session.user_id,
-        email: "knowsnth@gmail.com",
-        event: req.params.eventID
-      },
-      event: { title: 'Event Title', description: 'Event Description' /* ... */ },
-      times: {},
-      votes: {}
-    };
-    res.render("createEvent", templateVars);
+    const data = { user: req.user };
+
+    res.render("createEvent", data);
+    // res.json(user); // to check data representation
   });
 
 
