@@ -31,9 +31,9 @@ module.exports = () => {
     //   }],
     // ]
 
-    if (!eventObj) {
-      // error message?
-    }
+    // if (!eventObj) {
+    //   // error message?
+    // }
 
     const templateVars = {
       user: {
