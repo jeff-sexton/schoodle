@@ -44,11 +44,6 @@ module.exports = (db) => {
 
   router.post('/', (req, res) => {
 
-<<<<<<< HEAD
-    // post
-    //  generateUrl() - returns url string - localhost:999/events/   = url
-=======
-
     const eventDetails = {
       title: 'req.body?',
       description: 'req.body?',
@@ -61,9 +56,5 @@ module.exports = (db) => {
       });
 
   });
->>>>>>> ac5170e7af25e6412e1d86a154a7d0ea6cfe6bc4
-
-
-
-    return router;
-  };
+  return router;
+};
