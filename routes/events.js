@@ -20,7 +20,7 @@ module.exports = (db) => {
         if (event) {
           db.getTimesForEvent(event.id)
             .then(times => {
-              db.getVotesForEvent(event.id)
+              db.getVotesForEvent(event.id, user)
                 .then(votes => {
                   const templateVars = {
                     user,
@@ -29,7 +29,12 @@ module.exports = (db) => {
                     votes,
                   };
 
-                  res.render("viewEvent", templateVars);
+                  console.log('templateVars', templateVars);
+                  console.log('voteUSer', templateVars.votes[0].user);
+                  console.log('voteUserVotes', templateVars.votes[0].userVotes);
+
+                  // res.render("viewEvent", templateVars);
+                  res.json(templateVars);
                 });
             });
 
