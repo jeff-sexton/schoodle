@@ -152,8 +152,13 @@ B R E A D
   ## Template Var Format Example
 
   ```javascript
-    const data = {
+  const data = {
   user: {
+    id: 1001,
+    name: "Alice",
+    email: "alice@alice.com"
+  },
+  userVotes: {
     user: {
       id: 1001,
       name: "Alice",
@@ -330,5 +335,4 @@ B R E A D
     }
   ]
 }
-
-  ```
+ ```

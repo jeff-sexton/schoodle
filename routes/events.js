@@ -22,7 +22,7 @@ module.exports = (db) => {
             .then(data => {
               console.log('\n***** Promise all result ****** > \n',data, '\n');
               res.render("viewEvent", data);
-                // res.json(data); // to check data representation
+              // res.json(data); // to check data representation
             })
             .catch(err => {
               res

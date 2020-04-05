@@ -10,13 +10,10 @@ const router = express.Router();
 
 module.exports = () => {
   router.get("/", (req, res) => {
-    const userObj = req.user;
-    console.log(userObj);
-    let userData = {
-      name: req.session.user_id,
-      email: "knowsnth@gmail.com"
-    };
-    res.render("createEvent", userData);
+    const data = {user: req.user};
+
+    res.render("createEvent", data);
+    // res.json(user); // to check data representation
   });
 
 

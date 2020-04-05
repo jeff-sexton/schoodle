@@ -52,10 +52,10 @@ app.use((req, res, next) => {
         next();
       })
       .catch(() => { // complete catch logic for user sessions that are invalid
-        req.session = null
-        res
-          .status(500)
-          .redirect('/');
+        // req.session = null
+        // res
+        //   .status(500)
+        //   .redirect('/');
       });
 
   } else {
@@ -98,11 +98,10 @@ app.get('/login/:id', (req, res) => {
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  let userData = {
-    name: req.session.user_id,
-    email: "knowsnth@gmail.com"
-  };
-  res.render("index", userData);
+  const data = {user: req.user};
+
+  res.render("index", data);
+  // res.json(user); // to check data representation
 });
 
 app.listen(PORT, () => {
