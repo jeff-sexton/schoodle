@@ -152,91 +152,183 @@ B R E A D
   ## Template Var Format Example
 
   ```javascript
-    const user = {
-      id: 18,
-      name: null,
-      email: null
-    };
-
-    const event = {
-      id: 1,
-      title: 'Party Time',
-      description: 'Event Description',
-      url: 'aaaaaaa',
-      owner_id: 1001
-    };
-
-    const times = [
+    const data = {
+  user: {
+    user: {
+      id: 1001,
+      name: "Alice",
+      email: "alice@alice.com"
+    },
+    userVotes: [
       {
-        id: 1,
-        event_id: 1,
-        start_time: '',
-        end_time: '',
-        total_votes: 1
-      },
-      {
-        id: 2,
-        event_id: 1,
-        start_time: '',
-        end_time: '',
-        total_votes: 0
-      },
-      {
-        id: 3,
-        event_id: 1,
-        start_time: '',
-        end_time: '',
-        total_votes: 0
-      }
-    ];
-
-    const votes = [
-      {
+        id: 4101,
         user_id: 1001,
-        userVotes: [
-          {
-            id: 1,
-            time_id: 1,
-            user_id: 1001,
-            vote: true
-          },
-          {
-            id: 2,
-            time_id: 1,
-            user_id: 1002,
-            vote: false
-          },
-          {
-            id: 3,
-            time_id: 1,
-            user_id: 1003,
-            vote: null
-          },
-        ]
+        vote: true,
+        time_id: 3101,
+        event_id: 2101,
+        start_time: "2020-04-16T17:00:00.000Z",
+        end_time: "2020-04-16T19:00:00.000Z"
       },
       {
-        user_id: 1002,
-        userVotes: [
-          {
-            id: 4,
-            time_id: 1,
-            user_id: 1002,
-            vote: true
-          },
-          {
-            id: 5,
-            time_id: 1,
-            user_id: 1002,
-            vote: false
-          },
-          {
-            id: 6,
-            time_id: 1,
-            user_id: 1002,
-            vote: null
-          },
-        ]
+        id: 4102,
+        user_id: 1001,
+        vote: true,
+        time_id: 3102,
+        event_id: 2101,
+        start_time: "2020-04-20T17:00:00.000Z",
+        end_time: "2020-04-20T19:00:00.000Z"
       },
-    ];
+      {
+        id: 4103,
+        user_id: 1001,
+        vote: true,
+        time_id: 3103,
+        event_id: 2101,
+        start_time: "2020-04-22T23:00:00.000Z",
+        end_time: "2020-04-23T01:00:00.000Z"
+      }
+    ]
+  },
+  event: {
+    id: 2101,
+    owner_id: 1001,
+    title: "LHL Graduation Party",
+    description: "The best party ever where everyone is tired from bootcamp.",
+    url: "abcdefg"
+  },
+  times: [
+    {
+      id: 3101,
+      event_id: 2101,
+      start_time: "2020-04-16T17:00:00.000Z",
+      end_time: "2020-04-16T19:00:00.000Z",
+      total_votes: "2"
+    },
+    {
+      id: 3102,
+      event_id: 2101,
+      start_time: "2020-04-20T17:00:00.000Z",
+      end_time: "2020-04-20T19:00:00.000Z",
+      total_votes: "2"
+    },
+    {
+      id: 3103,
+      event_id: 2101,
+      start_time: "2020-04-22T23:00:00.000Z",
+      end_time: "2020-04-23T01:00:00.000Z",
+      total_votes: "3"
+    }
+  ],
+  guests: [
+    {
+      user: {
+        id: 1002,
+        name: "Kira",
+        email: "Kira@kira.com"
+      },
+      userVotes: [
+        {
+          id: 4104,
+          user_id: 1002,
+          vote: false,
+          time_id: 3101,
+          event_id: 2101,
+          start_time: "2020-04-16T17:00:00.000Z",
+          end_time: "2020-04-16T19:00:00.000Z"
+        },
+        {
+          id: 4105,
+          user_id: 1002,
+          vote: false,
+          time_id: 3102,
+          event_id: 2101,
+          start_time: "2020-04-20T17:00:00.000Z",
+          end_time: "2020-04-20T19:00:00.000Z"
+        },
+        {
+          id: 4106,
+          user_id: 1002,
+          vote: true,
+          time_id: 3103,
+          event_id: 2101,
+          start_time: "2020-04-22T23:00:00.000Z",
+          end_time: "2020-04-23T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      user: {
+        id: 1003,
+        name: "Edward",
+        email: "edward@edward.com"
+      },
+      userVotes: [
+        {
+          id: 4119,
+          user_id: 1003,
+          vote: true,
+          time_id: 3101,
+          event_id: 2101,
+          start_time: "2020-04-16T17:00:00.000Z",
+          end_time: "2020-04-16T19:00:00.000Z"
+        },
+        {
+          id: 4120,
+          user_id: 1003,
+          vote: false,
+          time_id: 3102,
+          event_id: 2101,
+          start_time: "2020-04-20T17:00:00.000Z",
+          end_time: "2020-04-20T19:00:00.000Z"
+        },
+        {
+          id: 4121,
+          user_id: 1003,
+          vote: true,
+          time_id: 3103,
+          event_id: 2101,
+          start_time: "2020-04-22T23:00:00.000Z",
+          end_time: "2020-04-23T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      user: {
+        id: 1004,
+        name: "Shane",
+        email: "shane@shane.com"
+      },
+      userVotes: [
+        {
+          id: 4122,
+          user_id: 1004,
+          vote: null,
+          time_id: 3101,
+          event_id: 2101,
+          start_time: "2020-04-16T17:00:00.000Z",
+          end_time: "2020-04-16T19:00:00.000Z"
+        },
+        {
+          id: 4123,
+          user_id: 1004,
+          vote: true,
+          time_id: 3102,
+          event_id: 2101,
+          start_time: "2020-04-20T17:00:00.000Z",
+          end_time: "2020-04-20T19:00:00.000Z"
+        },
+        {
+          id: 4124,
+          user_id: 1004,
+          vote: false,
+          time_id: 3103,
+          event_id: 2101,
+          start_time: "2020-04-22T23:00:00.000Z",
+          end_time: "2020-04-23T01:00:00.000Z"
+        }
+      ]
+    }
+  ]
+}
 
   ```

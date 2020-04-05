@@ -50,6 +50,12 @@ app.use((req, res, next) => {
       .then(user => {
         req.user = user;
         next();
+      })
+      .catch(() => { // complete catch logic for user sessions that are invalid
+        req.session = null
+        res
+          .status(500)
+          .redirect('/');
       });
 
   } else {

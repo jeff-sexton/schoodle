@@ -18,26 +18,17 @@ module.exports = (db) => {
     db.getEventByUrl(req.params.event_url)
       .then(event => {
         if (event) {
-          db.getTimesForEvent(event.id)
-            .then(times => {
-              db.getVotesForEvent(event.id, user)
-                .then(votes => {
-                  const templateVars = {
-                    user,
-                    event,
-                    times,
-                    votes,
-                  };
-
-                  console.log('templateVars', templateVars);
-                  console.log('voteUSer', templateVars.votes[0].user);
-                  console.log('voteUserVotes', templateVars.votes[0].userVotes);
-
-                  // res.render("viewEvent", templateVars);
-                  res.json(templateVars);
-                });
+          db.getDataForEvent(event, user)
+            .then(data => {
+              console.log('\n***** Promise all result ****** > \n',data, '\n');
+              res.render("viewEvent", data);
+                // res.json(data); // to check data representation
+            })
+            .catch(err => {
+              res
+                .status(500)
+                .json({ error: err.message });
             });
-
         } else {
           res.send("Event ID required or not found.");
         }
@@ -47,10 +38,7 @@ module.exports = (db) => {
           .status(500)
           .json({ error: err.message });
       });
-
   });
-
-
 
   //post to events '/'
 
