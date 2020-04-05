@@ -35,12 +35,17 @@ module.exports = () => {
       // error message?
     }
 
-    let userData = {
-      name: req.session.user_id,
-      email: "knowsnth@gmail.com",
-      event: req.params.eventID
+    const templateVars = {
+      user: {
+        name: req.session.user_id,
+        email: "knowsnth@gmail.com",
+        event: req.params.eventID
+      },
+      event: { title: 'Event Title', description: 'Event Description' /* ... */ },
+      times: {},
+      votes: {}
     };
-    res.render("viewEvent", userData);
+    res.render("viewEvent", templateVars);
   });
 
   router.get("*", (req, res) => {
@@ -51,7 +56,7 @@ module.exports = () => {
   //post to events '/'
 
 
-    // post
+  // post
   //  generateUrl() - returns url string - localhost:999/events/   = url
 
 

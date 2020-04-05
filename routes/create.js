@@ -12,11 +12,17 @@ module.exports = () => {
   router.get("/", (req, res) => {
     const userObj = req.user;
     console.log(userObj);
-    let userData = {
-      name: req.session.user_id,
-      email: "knowsnth@gmail.com"
+    const templateVars = {
+      user: {
+        name: req.session.user_id,
+        email: "knowsnth@gmail.com",
+        event: req.params.eventID
+      },
+      event: { title: 'Event Title', description: 'Event Description' /* ... */ },
+      times: {},
+      votes: {}
     };
-    res.render("createEvent", userData);
+    res.render("createEvent", templateVars);
   });
 
 

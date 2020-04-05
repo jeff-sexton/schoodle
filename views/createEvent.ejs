@@ -11,6 +11,7 @@
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
+  <script type="text/javascript" src="/scripts/table.js"></script>
 </head>
 
 <body class="container">
@@ -21,24 +22,38 @@
   <main>
     <form>
       <div class="form-group">
-        <label for="formGroupExampleInput">Event Name</label>
+        <label>Event Name</label>
         <input type="text" class="form-control" placeholder="Name your event." required>
       </div>
       <div class="form-group">
-        <label for="formGroupExampleInput2">Description</label>
+        <label>Description</label>
         <textarea type="text" class="form-control" placeholder="Describe your event." rows="3"></textarea>
       </div>
       <div class="form-group">
-        <label for="formGroupExampleInput2">Host Name</label>
+        <label>Host Name</label>
         <input type="text" class="form-control" placeholder="Who's hosting?" required>
       </div>
       <div class="form-group">
-        <label for="formGroupExampleInput2">Host Email</label>
+        <label>Host Email</label>
         <input type="email" class="form-control" placeholder="@email" required>
         <small class="form-text text-muted">We'll never share your email with anyone else outside your
           event.</small>
       </div>
-      <!-- MAKE dynamic times thing here -->
+      <button id="eventAddTime">+Add Time</button>
+      <table id="eventTimesTable" class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Day - Start - End</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Participant Name</th>
+            <td>Yes/No</td>
+          </tr>
+        </tbody>
+      </table>
       <button type="submit" class="btn btn-primary">Create Event</button>
     </form>
   </main>
