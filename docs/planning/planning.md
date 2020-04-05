@@ -146,3 +146,97 @@ B R E A D
 
 - Delete votes
   - not needed
+
+
+
+  ## Template Var Format Example
+
+  ```javascript
+    const user = {
+      id: 18,
+      name: null,
+      email: null
+    };
+
+    const event = {
+      id: 1,
+      title: 'Party Time',
+      description: 'Event Description',
+      url: 'aaaaaaa',
+      owner_id: 1001
+    };
+
+    const times = [
+      {
+        id: 1,
+        event_id: 1,
+        start_time: '',
+        end_time: '',
+        total_votes: 1
+      },
+      {
+        id: 2,
+        event_id: 1,
+        start_time: '',
+        end_time: '',
+        total_votes: 0
+      },
+      {
+        id: 3,
+        event_id: 1,
+        start_time: '',
+        end_time: '',
+        total_votes: 0
+      }
+    ];
+
+    const votes = [
+      {
+        user_id: 1001,
+        userVotes: [
+          {
+            id: 1,
+            time_id: 1,
+            user_id: 1001,
+            vote: true
+          },
+          {
+            id: 2,
+            time_id: 1,
+            user_id: 1002,
+            vote: false
+          },
+          {
+            id: 3,
+            time_id: 1,
+            user_id: 1003,
+            vote: null
+          },
+        ]
+      },
+      {
+        user_id: 1002,
+        userVotes: [
+          {
+            id: 4,
+            time_id: 1,
+            user_id: 1002,
+            vote: true
+          },
+          {
+            id: 5,
+            time_id: 1,
+            user_id: 1002,
+            vote: false
+          },
+          {
+            id: 6,
+            time_id: 1,
+            user_id: 1002,
+            vote: null
+          },
+        ]
+      },
+    ];
+
+  ```

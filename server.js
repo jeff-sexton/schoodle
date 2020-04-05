@@ -14,6 +14,7 @@ const app = express();
 const morgan = require('morgan');
 
 const userDb = require('./lib/userQueries');
+const eventsDb = require('./lib/eventQueries');
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -73,7 +74,7 @@ const eventsRoutes = require("./routes/events");
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/create", createRoutes());
-app.use("/events", eventsRoutes());
+app.use("/events", eventsRoutes(eventsDb));
 app.use("/api/users", usersRoutes(userDb));
 app.use("/api/widgets", widgetsRoutes(userDb));
 // Note: mount other resources here, using the same pattern above
