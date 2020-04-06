@@ -1,4 +1,5 @@
 $(() => {
+
   $("#eventAddTime").click(function (e) {
     e.preventDefault();
     const $heading = $('<th>').attr('scope', 'col').text('Day-Start-End');

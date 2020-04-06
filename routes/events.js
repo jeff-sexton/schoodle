@@ -42,6 +42,7 @@ module.exports = (db) => {
 
   // POST to events needs to be tested
 
+
   router.post('/', (req, res) => {
 
     const eventDetails = {
