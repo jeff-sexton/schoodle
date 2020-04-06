@@ -11,6 +11,7 @@
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
+  <script type="text/javascript" src="/scripts/tableAddParticipant.js"></script>
 </head>
 
 <body class="container">
@@ -36,6 +37,21 @@
     </section>
     <section>
       <p>make voting here based on event dates</p>
+      <table id="eventTimesTable" class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Day - Start - End</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Participant Name</th>
+            <td>Yes/No</td>
+          </tr>
+        </tbody>
+      </table>
+      <button id="eventAddParticipant">+ Add Participant</button>
     </section>
   </main>
 </body>

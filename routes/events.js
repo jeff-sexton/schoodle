@@ -13,14 +13,12 @@ module.exports = (db) => {
   router.get("/:event_url", (req, res) => {
     const user = req.user;
 
-
-
     db.getEventByUrl(req.params.event_url)
       .then(event => {
         if (event) {
           db.getDataForEvent(event, user)
             .then(data => {
-              console.log('\n***** Promise all result ****** > \n',data, '\n');
+              console.log('\n***** Promise all result ****** > \n', data, '\n');
               res.render("viewEvent", data);
               // res.json(data); // to check data representation
             })
@@ -46,7 +44,6 @@ module.exports = (db) => {
 
   router.post('/', (req, res) => {
 
-
     const eventDetails = {
       title: 'req.body?',
       description: 'req.body?',
@@ -59,8 +56,5 @@ module.exports = (db) => {
       });
 
   });
-
-
-
   return router;
 };
