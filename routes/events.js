@@ -18,7 +18,6 @@ module.exports = (db) => {
         if (event) {
           db.getDataForEvent(event, user)
             .then(data => {
-              console.log('\n***** Promise all result ****** > \n', data, '\n');
               res.render("viewEvent", data);
               // res.json(data); // to check data representation
             })
