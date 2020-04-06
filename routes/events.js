@@ -44,10 +44,15 @@ module.exports = (db) => {
 
   router.post('/', (req, res) => {
 
-    db.createEventFromForm(req.body, req.user);
+    db.createEventFromForm(req.body, req.user)
+      .then((data) => {
+        console.log('data',data);
+        res.send(data); // to check data representation
+        // redirect to event url
+
+      });
 
 
-    // redirect to event url
 
   });
   return router;
