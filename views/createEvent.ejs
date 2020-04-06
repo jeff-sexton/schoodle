@@ -51,7 +51,7 @@
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Day - Start - End</th>
+              <th scope="col">Option</th>
             </tr>
           </thead>
 
@@ -59,30 +59,24 @@
             <tr>
               <th scope="row">Start Time</th>
               <td>
-                <input type='date' name='start_date'>
-                <input type='time' name='start_time'>
+                <input type='date' name='start_date' required>
+                <input type='time' name='start_time' required>
               </td>
             </tr>
 
             <tr>
               <th scope="row">End Time</th>
               <td>
-                <input type='date' name='end_date'>
-                <input type='time' name='end_time'>
+                <input type='date' name='end_date' required>
+                <input type='time' name='end_time' required>
               </td>
             </tr>
           </tbody>
         </table>
       </section>
 
-
-
       <button type="submit" class="btn btn-primary">Create Event</button>
     </form>
-
-
-
   </main>
 </body>
-
 </html>
