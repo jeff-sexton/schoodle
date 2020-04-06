@@ -44,45 +44,10 @@ module.exports = (db) => {
 
   router.post('/', (req, res) => {
 
-    const user = {
-      id: req.user.id,
-      name: req.body.name,
-      email: req.body.email
-    };
-
-    //const upromise = updateUser()
-
-    const event = {
-      title: req.body.title,
-      description: req.body.description,
-      owner_id: req.user.id
-    };
-
-    // const evPromise = addEvent
-
-    // db.addEvent(eventDetails)
-    //   .then(event => {
-    //     res.redirect(`/events/${event.url}`);
-    //   });
-
-
-    // construct times - helper function
-
-
-
-    // add times
-
-    console.log('\n***** req\n', req.body, '\n');
-    console.log('\n***** eventDetails\n', event, '\n');
-    console.log('\n***** user\n', user, '\n');
-
+    db.createEventFromForm(req.body, req.user);
 
 
     // redirect to event url
-
-
-
-
 
   });
   return router;
