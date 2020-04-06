@@ -4,7 +4,6 @@ $(() => {
   $('#variableJSON').remove();
   const times = ejsLocals.times;
   const guests = ejsLocals.guests;
-  console.log(ejsLocals);
 
   const monthToString = (month) => {
     switch (month) {
