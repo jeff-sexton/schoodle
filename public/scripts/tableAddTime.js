@@ -30,9 +30,15 @@ $(() => {
 
 
     const offset = new Date().getTimezoneOffset() / -60; // get local time zone offset to UTC in hours
+    let offsetStr = String(Math.abs(offset)).padStart(2,'0'); //format as 2 digit string
+    if (offset < 0) {
+      offsetStr = `-${offsetStr}`;
+    } else {
+      offsetStr = `+${offsetStr}`;
+    }
 
     let formData = $(this).serialize();
-    formData += `&offset=${offset}`;
+    formData += `&offset=${offsetStr}`;
 
     $.post('/events', formData);
   });
