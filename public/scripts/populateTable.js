@@ -29,32 +29,37 @@ $(() => {
     $table.children("thead").children("tr").append($heading);
   }
 
-  const appendGuestToTable = (name) => {
+  const appendUserToTable = () => {
+    const $userRow = $('<tr>');
+    const $rowHeading = $('<th>').attr('scope', 'row').text(ejsLocals.user.name);
+    const $rowVote = $('<td>');
+    $userRow.append($rowHeading);
+    for (let i = 0; i < times.length; i++) {
+      $userRow.append($rowVote.clone().text(ejsLocals.userVotes));
+    };
+    $table.children("tbody").append($userRow);
+  }
+
+  const appendGuestToTable = (guestNumber, name) => {
     const $guestRow = $('<tr>');
     const $rowHeading = $('<th>').attr('scope', 'row').text(name);
-    const $rowVote = $('<td>').text('Yes/No');
+    const $rowVote = $('<td>');
     $guestRow.append($rowHeading);
     for (let i = 0; i < times.length; i++) {
-      $guestRow.append($rowVote.clone());
+      $guestRow.append($rowVote.clone().text(guests[guestNumber].userVotes[i].vote));
     };
     $table.children("tbody").append($guestRow);
   }
 
-  // const appendVotesToTable = () => {
-  //   const $rowVote = $('<td>').text('Yes/No');
-  //   $table.children("tbody").children("tr").append($rowVote);
-  // }
+  appendUserToTable();
 
   for (let i = 0; i < times.length; i++) {
     let date = new Date(times[i].start_time)
     appendDateToTable(date.getMonth() + 1, date.getDate());
   }
 
-  for (let i = 0; i < guests.length; i++) {
-    console.log(guests[i])
-    appendGuestToTable(guests[i].user.name);
+  for (let guestNumber = 0; guestNumber < guests.length; guestNumber++) {
+    appendGuestToTable(guestNumber, guests[guestNumber].user.name);
   }
 
-  // appendVotesToTable();
-
-})
+});
