@@ -45,16 +45,27 @@ module.exports = (db) => {
 
   router.post('/', (req, res) => {
 
-    const eventDetails = {
-      title: 'req.body?',
-      description: 'req.body?',
+    const event = {
+      title: req.body.title,
+      description: req.body.description,
       owner_id: req.user.id
     };
 
-    db.addEvent(eventDetails)
-      .then(event => {
-        res.redirect(`/events/${event.url}`);
-      });
+    const user = {
+      id: req.user.id,
+      name: req.body.name,
+      email: req.body.email
+    };
+    const times = [];
+
+    console.log('\n***** req\n', req.body, '\n');
+    console.log('\n***** eventDetails\n', event, '\n');
+    console.log('\n***** user\n', user, '\n');
+
+    // db.addEvent(eventDetails)
+    //   .then(event => {
+    //     res.redirect(`/events/${event.url}`);
+    //   });
 
   });
   return router;

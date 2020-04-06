@@ -1,3 +1,5 @@
+/* eslint-env jquery */
+
 $(() => {
 
   $("#eventAddTime").click(function (e) {
@@ -7,5 +9,11 @@ $(() => {
     const table = $(this.parentNode.children[5]);
     table.children("thead").children("tr").append($heading);
     table.children("tbody").children("tr").append($vote);
+  });
+
+  $('#create-event-form').on('sumbit', (event) => {
+    event.preventDefault();
+    $.post('/events', this.serialize());
+
   });
 });
