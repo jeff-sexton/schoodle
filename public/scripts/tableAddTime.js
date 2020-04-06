@@ -2,18 +2,20 @@
 
 $(() => {
 
+
+
   $("#eventAddTime").click(function(event) {
     event.preventDefault();
     const $heading = $('<th>').attr('scope', 'col').text('Option');
 
     const $startDayTime = $('<td>').append(
-      $('<input>').attr({'type': 'date', 'name':'start_date',}).prop('required',true),
-      $('<input>').attr({'type': 'time', 'name':'start_time'}).prop('required',true)
+      $('<input>').attr({'type': 'date', 'name':'start_dates',}).prop('required',true),
+      $('<input>').attr({'type': 'time', 'name':'start_times'}).prop('required',true)
     );
 
     const $endDayTime = $('<td>').append(
-      $('<input>').attr({'type': 'date', 'name':'end_date'}).prop('required',true),
-      $('<input>').attr({'type': 'time', 'name':'end_time'}).prop('required',true)
+      $('<input>').attr({'type': 'date', 'name':'end_dates'}).prop('required',true),
+      $('<input>').attr({'type': 'time', 'name':'end_times'}).prop('required',true)
     );
 
     const $table = $(this).parent().find('table');
@@ -25,6 +27,13 @@ $(() => {
 
   $('form').submit(function(event) {
     event.preventDefault();
-    $.post('/events', $(this).serialize());
+
+
+    const offset = new Date().getTimezoneOffset() / -60; // get local time zone offset to UTC in hours
+
+    let formData = $(this).serialize();
+    formData += `&offset=${offset}`;
+
+    $.post('/events', formData);
   });
 });
