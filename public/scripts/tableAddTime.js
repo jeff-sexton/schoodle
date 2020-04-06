@@ -11,9 +11,13 @@ $(() => {
     table.children("tbody").children("tr").append($vote);
   });
 
-  $('#create-event-form').on('sumbit', (event) => {
+  $('form').submit( function(event) {
     event.preventDefault();
-    $.post('/events', this.serialize());
+    console.log('test');
+    console.log('*** event/user inputs', $(".event-form-section").find("input, textarea, select").serialize());
+    console.log('*** times inputs', $(".times-form-section").find("input, textarea, select").serialize());
+
+    $.post('/events', $(this).serialize());
 
   });
 });
