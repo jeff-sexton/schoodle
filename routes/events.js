@@ -18,7 +18,6 @@ module.exports = (db) => {
         if (event) {
           db.getDataForEvent(event, user)
             .then(data => {
-              console.log('\n***** Promise all result ****** > \n', data, '\n');
               res.render("viewEvent", data);
               // res.json(data); // to check data representation
             })
@@ -38,23 +37,18 @@ module.exports = (db) => {
       });
   });
 
-  //post to events '/'
-
-  // POST to events needs to be tested
-
+  // Add event - also updates user(if needed) and adds event times from create page
   router.post('/', (req, res) => {
 
-    const eventDetails = {
-      title: 'req.body?',
-      description: 'req.body?',
-      owner_id: req.user.id
-    };
+    db.createEventFromForm(req.body, req.user)
+      .then((data) => {
 
-    db.addEvent(eventDetails)
-      .then(event => {
-        res.redirect(`/events/${event.url}`);
+        // data = {user, event, times} from event creation in the db
+
+        // redirect to event url
+        res.json(data); //can't respond with a res.redirect() for an ajax post !!!!
       });
-
   });
+
   return router;
 };
