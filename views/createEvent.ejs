@@ -20,7 +20,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
   <!-- App JS -->
-  <script type="text/javascript" src="/scripts/tableAddTime.js"></script>
+  <script type="text/javascript" src="/scripts/createEvent.js"></script>
 </head>
 
 <body >
@@ -55,33 +55,39 @@
       </section>
 
       <section class='times-form-section'>
-        <button id="eventAddTime">+Add Time</button>
-        <table id="eventTimesTable" class="table table-bordered">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Option</th>
-            </tr>
-          </thead>
+        <button id="add-time-btn">+Add Time</button>
+        <div class="table-responsive">
+          <table id="eventTimesTable" class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">Event Time</th>
+              </tr>
+            </thead>
 
-          <tbody>
-            <tr>
-              <th scope="row">Start Time</th>
-              <td>
-                <input type='date' name='start_dates' required>
-                <input type='time' name='start_times' required>
-              </td>
-            </tr>
+            <tbody>
+              <tr>
+                <th scope="row">Start Time</th>
+                <td>
+                  <div class='event-time-div'>
+                    <input type='date' name='start_dates' required>
+                    <input type='time' name='start_times' required>
+                  </div>
+                </td>
+              </tr>
 
-            <tr>
-              <th scope="row">End Time</th>
-              <td>
-                <input type='date' name='end_dates' required>
-                <input type='time' name='end_times' required>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+              <tr>
+                <th scope="row">End Time</th>
+                <td>
+                  <div class='event-time-div'>
+                    <input type='date' name='end_dates' required>
+                    <input type='time' name='end_times' required>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </section>
 
       <button type="submit" class="btn btn-primary">Create Event</button>
