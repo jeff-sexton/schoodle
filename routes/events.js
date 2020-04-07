@@ -47,7 +47,7 @@ module.exports = (db) => {
     db.createEventFromForm(req.body, req.user)
       .then((data) => {
         console.log('data',data);
-        res.send(data); // to check data representation
+        // res.json(event); //can't respond with a redirect for an ajax post !!!!
         // redirect to event url
 
       });
