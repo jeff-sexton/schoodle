@@ -11,30 +11,31 @@ const router = express.Router();
 
 module.exports = (db) => {
   router.get("/:event_url", (req, res) => {
-    const user = req.user;
+    // const user = req.user;
 
-    db.getEventByUrl(req.params.event_url)
-      .then(event => {
-        if (event) {
-          db.getDataForEvent(event, user)
-            .then(data => {
-              res.render("viewEvent", data);
-              // res.json(data); // to check data representation
-            })
-            .catch(err => {
-              res
-                .status(500)
-                .json({ error: err.message });
-            });
-        } else {
-          res.send("Event ID required or not found.");
-        }
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
+    // db.getEventByUrl(req.params.event_url)
+    //   .then(event => {
+    //     if (event) {
+    //       db.getDataForEvent(event, user)
+    //         .then(data => {
+    //           res.render("viewEvent", data);
+    //           // res.json(data); // to check data representation
+    //         })
+    //         .catch(err => {
+    //           res
+    //             .status(500)
+    //             .json({ error: err.message });
+    //         });
+    //     } else {
+    //       res.send("Event ID required or not found.");
+    //     }
+    //   })
+    //   .catch(err => {
+    //     res
+    //       .status(500)
+    //       .json({ error: err.message });
+    //   });
+    res.redirect('../');
   });
 
   // Add event - also updates user(if needed) and adds event times from create page

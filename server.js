@@ -80,7 +80,7 @@ const eventsRoutes = require("./routes/events");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
-app.use("/create", createRoutes());
+// app.use("/create", createRoutes());
 app.use("/events", eventsRoutes(eventQueries));
 app.use("/api/users", usersRoutes(userQueries));
 app.use("/api/widgets", widgetsRoutes(userQueries));
@@ -100,7 +100,8 @@ app.get('/login/:id', (req, res) => {
 app.get("/", (req, res) => {
   const data = {user: req.user};
 
-  res.render("index", data);
+  // res.render("index", data);
+  res.redirect('/');
   // res.json(user); // to check data representation
 });
 
