@@ -37,23 +37,18 @@ module.exports = (db) => {
       });
   });
 
-  //post to events '/'
-
-  // POST to events needs to be tested
-
-
+  // Add event - also updates user(if needed) and adds event times from create page
   router.post('/', (req, res) => {
 
     db.createEventFromForm(req.body, req.user)
       .then((data) => {
-        console.log('data',data);
-        // res.json(event); //can't respond with a redirect for an ajax post !!!!
+
+        // data = {user, event, times} from event creation in the db
+
         // redirect to event url
-
+        res.json(data); //can't respond with a res.redirect() for an ajax post !!!!
       });
-
-
-
   });
+
   return router;
 };

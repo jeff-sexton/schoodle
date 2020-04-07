@@ -1,9 +1,7 @@
 /* eslint-env jquery */
+/* global window */
 
 $(() => {
-
-
-
   $("#eventAddTime").click(function(event) {
     event.preventDefault();
     const $heading = $('<th>').attr('scope', 'col').text('Option');
@@ -28,18 +26,25 @@ $(() => {
   $('form').submit(function(event) {
     event.preventDefault();
 
-
-    const offset = new Date().getTimezoneOffset() / -60; // get local time zone offset to UTC in hours
-    let offsetStr = String(Math.abs(offset)).padStart(2,'0'); //format as 2 digit string
+    // get local time zone offset to UTC in hours
+    const offset = new Date().getTimezoneOffset() / -60;
+    //format as 2 digit string
+    let offsetStr = String(Math.abs(offset)).padStart(2,'0');
     if (offset < 0) {
       offsetStr = `-${offsetStr}`;
     } else {
       offsetStr = `+${offsetStr}`;
     }
 
+    //Get form data and append timezone offset string
     let formData = $(this).serialize();
     formData += `&offset=${offsetStr}`;
 
-    $.post('/events', formData);
+    $.post('/events', formData)
+      .then(({event}) => { //more data is being passed if we switch to single page application...
+
+        // event.url contains the string URL to redirect to
+        window.location.href = `/events/${event.url}`;
+      });
   });
 });
