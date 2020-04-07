@@ -11,6 +11,7 @@
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
+  <script type="text/javascript" src="/scripts/populateTable.js"></script>
   <script type="text/javascript" src="/scripts/tableAddParticipant.js"></script>
 </head>
 
@@ -23,12 +24,12 @@
     <section>
       <div class="card text-center">
         <div class="card-header">
-          Event: id / url
+          Event: <%= locals.event.id %>
         </div>
         <div class="card-body">
-          <h5 class="card-title">Event Name</h5>
-          <p class="card-text">Event Description</p>
-          <a href="#" class="btn btn-primary">change this to url link copy</a>
+          <h5 class="card-title"><%= locals.event.title %></h5>
+          <p class="card-text"><%= locals.event.description %></p>
+          <a href="#" class="btn btn-primary">url: <%= locals.event.url %></a>
         </div>
         <div class="card-footer text-muted">
           footer some agregate data - total attendees / days till event
@@ -36,24 +37,23 @@
       </div>
     </section>
     <section>
-      <p>make voting here based on event dates</p>
       <table id="eventTimesTable" class="table table-bordered">
         <thead>
           <tr>
             <th scope="col">#</th>
-            <th scope="col">Day - Start - End</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <th scope="row">Participant Name</th>
-            <td>Yes/No</td>
           </tr>
         </tbody>
       </table>
       <button id="eventAddParticipant">+ Add Participant</button>
     </section>
   </main>
+  <span id='variableJSON' hidden>
+    <%= JSON.stringify(locals); %>
+  </span>
 </body>
 
 </html>

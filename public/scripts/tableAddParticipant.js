@@ -6,7 +6,8 @@ $(() => {
     const $rowVote = $('<td>').text('Yes/No');
     $row.append($rowHeading);
     $row.append($rowVote);
-    const table = $(this.parentNode.children[1]);
+    const table = $(this.parentNode.children[0]);
+    console.log(table)
     table.children("tbody").append($row);
   });
 });
