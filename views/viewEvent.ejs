@@ -2,32 +2,40 @@
 <html lang="en">
 
 <head>
-  <title>Event: ----id----</title>
+  <title>Scoodel Event</title>
 
-  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
-  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-  <link rel="stylesheet" href="/vendor/bootstrap.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <!-- External CSS -->
+    <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+    <link rel="stylesheet" href="/vendor/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
 
-  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  <script type="text/javascript" src="/scripts/app.js"></script>
-  <script type="text/javascript" src="/scripts/populateTable.js"></script>
-  <script type="text/javascript" src="/scripts/tableAddParticipant.js"></script>
+    <!-- App CSS -->
+    <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+    <!-- External JS -->
+    <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <!-- App JS -->
+  <script type="text/javascript" src="/scripts/viewEvent.js"></script>
+  <!-- <script type="text/javascript" src="/scripts/populateTable.js"></script>
+  <script type="text/javascript" src="/scripts/tableAddParticipant.js"></script> -->
 </head>
 
-<body class="container">
+<body >
   <%- include('partials/_header') %>
-  <header>
-    <h1>This is event <%= locals.event.title %></h1>
-  </header>
-  <main>
-    <section>
+
+  <main class="container">
+
+    <section class='event-details'>
       <div class="card text-center">
         <div class="card-header">
-          Event: <%= locals.event.id %>
+          <h5 class="card-title"><%= locals.event.title %></h5>
         </div>
         <div class="card-body">
-          <h5 class="card-title"><%= locals.event.title %></h5>
+
           <p class="card-text"><%= locals.event.description %></p>
           <a href="#" class="btn btn-primary">url: <%= locals.event.url %></a>
         </div>
@@ -36,24 +44,104 @@
         </div>
       </div>
     </section>
-    <section>
-      <table id="eventTimesTable" class="table table-bordered">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-          </tr>
-        </tbody>
-      </table>
-      <button id="eventAddParticipant">+ Add Participant</button>
+
+    <section class='vote-details'>
+      <div class="table-responsive">
+        <table id="eventTimesTable" class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Start Time</th>
+              <% for(const time of locals.times) { %>
+                <th scope='col'><%= time.start_time %></th>
+              <% } %>
+            </tr>
+            <tr>
+              <th scope="col">End Time</th>
+              <% for(const time of locals.times) { %>
+                <th scope='col'><%= time.end_time %></th>
+              <% } %>
+            </tr>
+            <tr>
+              <th scope="col">Totals</th>
+              <% for(const time of locals.times) { %>
+                <th scope='col'><%= time.total_votes %></th>
+              <% } %>
+            </tr>
+
+          </thead>
+
+          <tbody>
+            <form method='POST' action='/votes' class='' id='vote-form'>
+              <tr>
+                <th scope="row">
+                  <div class="form-group">
+                    <label for='user-name'>Name:</label>
+                    <input type="text" class="form-control" id='user-name' name='name' value='<%= locals.user.name %>' placeholder="Enter Name" required>
+                  </div>
+                </th>
+
+                <% for(const vote of locals.userVotes.userVotes) { %>
+                  <td>
+                    <label>Can you attend?
+                      <select class="custom-select" name='vote-<%= vote.time_id %>'>
+                        <% if (vote.vote) { %>
+                          <option value='true' selected>Yes</option>
+                          <option value='false'>No</option>
+                          <option value='null'>-</option>
+                        <% } else if (vote.vote === false) { %>
+                          <option value='true'>Yes</option>
+                          <option value='false' selected>No</option>
+                          <option value='null'>-</option>
+                        <% } else { %>
+                          <option value='true'>Yes</option>
+                          <option value='false'>No</option>
+                          <option value='null' selected>-</option>
+                        <% } %>
+                      </select>
+                    </label>
+                  </td>
+               <% } %>
+              </tr>
+
+              <tr>
+                <th scope="row">
+                  <div class="form-group">
+                    <label for='user-email'>Email:</label>
+                    <input type="email" class="form-control" id='user-email' name='email' value='<%= locals.user.email %>' placeholder="@email">
+                  </div>
+                </th>
+                <td>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                    <label class="custom-control-label" for="customCheck1">Check for Email updates</label>
+                  </div>
+                </td>
+                <td>
+                  <button>Submit</button>
+                </td>
+              </tr>
+            </form>
+
+            <% for(const guest of locals.guests) { %>
+              <tr>
+                <th scope='row'><%= guest.user.name %></th>
+                <% for(const vote of guest.userVotes) { %>
+                  <td>
+                    <% if (vote.vote) { %>
+                      Yes
+                    <% } else if (vote.vote === false) { %>
+                      No
+                    <% } else { %>
+                      -
+                    <% } %>
+                  </td>
+                <% } %>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
     </section>
   </main>
-  <span id='variableJSON' hidden>
-    <%= JSON.stringify(locals); %>
-  </span>
 </body>
-
 </html>
