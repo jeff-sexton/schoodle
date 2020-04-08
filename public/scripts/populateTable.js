@@ -23,9 +23,28 @@ $(() => {
     }
   }
 
-  const appendDateToTable = (month, day) => {
-    const $heading = $('<th>').attr('scope', 'col').text(monthToString(month) + day);
+  const appendDateToTable = (month, day, hours, minutes) => {
+    let minuteString = minutes > 9 ? minutes : '0' + minutes;
+    let timeString = hours > 12 ? (hours - 12) + ':' + minuteString + ' PM' : hours + ':' + minuteString + ' AM';
+    const $heading = $('<th>').attr('scope', 'col').text(monthToString(month) + day + ' ' + timeString);
     $table.children("thead").children("tr").append($heading);
+  }
+
+  const getDropdown = (voteValue) => {
+    let selection = voteValue ? 'Yes' : 'No';
+    if (voteValue === null) {
+      selection = '-';
+    }
+    return $(`<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      ${selection}
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="#">Yes</a>
+      <a class="dropdown-item" href="#">No</a>
+      <a class="dropdown-item" href="#">-</a>
+    </div>
+  </div>`);
   }
 
   const appendUserToTable = () => {
@@ -34,7 +53,8 @@ $(() => {
     const $rowVote = $('<td>');
     $userRow.append($rowHeading);
     for (let i = 0; i < times.length; i++) {
-      $userRow.append($rowVote.clone().text(ejsLocals.userVotes));
+      let tempRowVote = $rowVote.clone().append(getDropdown(ejsLocals.userVotes.userVotes[i].vote));
+      $userRow.append(tempRowVote);
     };
     $table.children("tbody").append($userRow);
   }
@@ -45,7 +65,11 @@ $(() => {
     const $rowVote = $('<td>');
     $guestRow.append($rowHeading);
     for (let i = 0; i < times.length; i++) {
-      $guestRow.append($rowVote.clone().text(guests[guestNumber].userVotes[i].vote));
+      let tempText = guests[guestNumber].userVotes[i].vote ? 'Yes' : 'No';
+      if (guests[guestNumber].userVotes[i].vote === null) {
+        tempText = '-';
+      }
+      $guestRow.append($rowVote.clone().text(tempText));
     };
     $table.children("tbody").append($guestRow);
   }
@@ -54,7 +78,7 @@ $(() => {
 
   for (let i = 0; i < times.length; i++) {
     let date = new Date(times[i].start_time)
-    appendDateToTable(date.getMonth() + 1, date.getDate());
+    appendDateToTable(date.getMonth() + 1, date.getDate(), date.getHours(), date.getMinutes());
   }
 
   for (let guestNumber = 0; guestNumber < guests.length; guestNumber++) {
