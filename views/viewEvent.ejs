@@ -126,8 +126,11 @@
                   <% } %>
                 </tr>
 
+                <% const emailSpan = Math.ceil((numOfTimes + 1) / 2); %>
+                <% const submitSpan = (numOfTimes + 1) - emailSpan; %>
+
                 <tr>
-                  <td colspan="2">
+                  <td colspan='<%= emailSpan %>'>
                     <div class="form-group">
                       <label for='user-email'>Email:</label>
                       <input type="email" class="form-control" id='user-email' name='email' value='<%= locals.user.email %>' placeholder="@email">
@@ -137,7 +140,7 @@
                       <label class="custom-control-label" for="customCheck1">Check for Email updates</label>
                     </div>
                   </td>
-                  <td colspan="2">
+                  <td colspan='<%= submitSpan %>'>
                     <button>Submit</button>
                   </td>
                 </tr>
