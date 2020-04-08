@@ -23,8 +23,10 @@ $(() => {
     }
   }
 
-  const appendDateToTable = (month, day) => {
-    const $heading = $('<th>').attr('scope', 'col').text(monthToString(month) + day);
+  const appendDateToTable = (month, day, hours, minutes) => {
+    let minuteString = minutes > 9 ? minutes : '0' + minutes;
+    let timeString = hours > 12 ? (hours - 12) + ':' + minuteString + ' PM' : hours + ':' + minuteString + ' AM';
+    const $heading = $('<th>').attr('scope', 'col').text(monthToString(month) + day + ' ' + timeString);
     $table.children("thead").children("tr").append($heading);
   }
 
@@ -76,7 +78,7 @@ $(() => {
 
   for (let i = 0; i < times.length; i++) {
     let date = new Date(times[i].start_time)
-    appendDateToTable(date.getMonth() + 1, date.getDate());
+    appendDateToTable(date.getMonth() + 1, date.getDate(), date.getHours(), date.getMinutes());
   }
 
   for (let guestNumber = 0; guestNumber < guests.length; guestNumber++) {
