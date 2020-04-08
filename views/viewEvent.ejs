@@ -71,7 +71,11 @@
             <tr>
               <th scope="col">Totals</th>
               <% for(const time of locals.times) { %>
-                <th scope='col'><%= time.total_votes %></th>
+                <th scope='col'>
+                  <%= time.total_votes %>
+                  <%= time.id %>
+
+                </th>
               <% } %>
             </tr>
 
@@ -92,7 +96,15 @@
 
                   <% if (!locals.userVotes || locals.userVotes.userVotes.length === 0 ) { %>
                     <% for(let col = 0; col < numOfTimes; col++) { %>
-                      <%- include('partials/_newVote') %>
+                      <td>
+                        <label>Can you attend?
+                          <select class="custom-select" name='vote-new-time-<%= locals.times[col].id %>'>
+                            <option value='true'>Yes</option>
+                            <option value='false'>No</option>
+                            <option value='null' selected>-</option>
+                          </select>
+                        </label>
+                      </td>
                    <% } %>
 
                   <% } else { %>
@@ -101,7 +113,7 @@
                       <% if (vote) { %>
                         <td>
                           <label>Can you attend?
-                            <select class="custom-select" name='vote-<%= vote.time_id %>'>
+                            <select class="custom-select" name='vote-<%= vote.id %>-time-<%= vote.time_id %>'>
                               <% if (vote.vote) { %>
                                 <option value='true' selected>Yes</option>
                                 <option value='false'>No</option>
@@ -120,7 +132,15 @@
                         </td>
 
                       <% } else { %>
-                        <%- include('partials/_newVote') %>
+                        <td>
+                          <label>Can you attend?
+                            <select class="custom-select" name='vote-new-time-<%= locals.times[col].id %>'>
+                              <option value='true'>Yes</option>
+                              <option value='false'>No</option>
+                              <option value='null' selected>-</option>
+                            </select>
+                          </label>
+                        </td>
                       <% } %>
                     <% } %>
                   <% } %>
