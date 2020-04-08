@@ -19,16 +19,7 @@ module.exports = (db) => {
 
     db.processVotesForm(req.body, req.user);
 
-    // update user details (if necessary)
 
-
-    // check for new votes
-
-
-    // create new votes
-
-
-    // update existing votes
 
 
 
