@@ -1,7 +1,11 @@
 // See: https://sass-lang.com/
 
+:root {
+  --main-bg-color: #EEE;
+}
+
 body {
-  background-color: #EEE;
+  padding-top: 50px;
 
   h1 {
     color: #244751;

@@ -3,11 +3,8 @@
 
 <head>
   <title>Create Event</title>
-
-
-
   <!-- External CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="/vendor/bootstrap.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
 
@@ -15,7 +12,7 @@
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
   <!-- External JS -->
-  <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
@@ -23,31 +20,31 @@
   <script type="text/javascript" src="/scripts/createEvent.js"></script>
 </head>
 
-<body >
+<body class='bg-light text-dark'>
   <%- include('partials/_header') %>
 
   <main class="container">
-    <header >
+    <header class='row justify-content-center'>
       <h1>Create New Event</h1>
     </header>
     <form method='POST' action='/events' class='' id='create-event-form'>
-      <section class='event-form-section'>
-        <div class="form-group ">
+      <section class='event-form-section row justify-content-center'>
+        <div class="form-group col-8">
           <label for='event-title'>Event Title</label>
-          <input type="text" class="form-control" id='event-title' name='title' placeholder="Name your event." required>
+          <input type="text" class="form-control overflow" id='event-title' name='title' placeholder="Name your event."  size='30' required>
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-10">
           <label for='event-description'>Description</label>
           <textarea type="text" class="form-control" id='event-description' name='description' placeholder="Describe your event." rows="3"></textarea>
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-sm-6">
           <label for='user-name'>Host Name</label>
           <input type="text" class="form-control" id='user-name' name='name' value='<%= locals.user.name %>' placeholder="Who's hosting?" required>
         </div>
 
-        <div class="form-group">
+        <div class="form-group col-sm-6">
           <label for='user-email'>Host Email</label>
           <input type="email" class="form-control" id='user-email' name='email' value='<%= locals.user.email %>' placeholder="@email" required>
           <small class="form-text text-muted">We'll never share your email with anyone else outside your event.</small>
@@ -55,7 +52,7 @@
       </section>
 
       <section class='times-form-section'>
-        <button id="add-time-btn">+Add Time</button>
+        <button class='btn btn-secondary' id="add-time-btn">+Add Time</button>
         <div class="table-responsive">
           <table id="eventTimesTable" class="table table-bordered">
             <thead>
