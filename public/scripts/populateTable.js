@@ -28,13 +28,31 @@ $(() => {
     $table.children("thead").children("tr").append($heading);
   }
 
+  const getDropdown = (voteValue) => {
+    let selection = voteValue ? 'Yes' : 'No';
+    if (voteValue === null) {
+      selection = '-';
+    }
+    return $(`<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      ${selection}
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="#">Yes</a>
+      <a class="dropdown-item" href="#">No</a>
+      <a class="dropdown-item" href="#">-</a>
+    </div>
+  </div>`);
+  }
+
   const appendUserToTable = () => {
     const $userRow = $('<tr>');
     const $rowHeading = $('<th>').attr('scope', 'row').text(ejsLocals.user.name);
     const $rowVote = $('<td>');
     $userRow.append($rowHeading);
     for (let i = 0; i < times.length; i++) {
-      $userRow.append($rowVote.clone().text(ejsLocals.userVotes));
+      let tempRowVote = $rowVote.clone().append(getDropdown(ejsLocals.userVotes.userVotes[i].vote));
+      $userRow.append(tempRowVote);
     };
     $table.children("tbody").append($userRow);
   }
@@ -45,7 +63,11 @@ $(() => {
     const $rowVote = $('<td>');
     $guestRow.append($rowHeading);
     for (let i = 0; i < times.length; i++) {
-      $guestRow.append($rowVote.clone().text(guests[guestNumber].userVotes[i].vote));
+      let tempText = guests[guestNumber].userVotes[i].vote ? 'Yes' : 'No';
+      if (guests[guestNumber].userVotes[i].vote === null) {
+        tempText = '-';
+      }
+      $guestRow.append($rowVote.clone().text(tempText));
     };
     $table.children("tbody").append($guestRow);
   }

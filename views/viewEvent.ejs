@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script type="text/javascript" src="/vendor/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript" src="/vendor/bootstrap.min.js"></script>
   <script type="text/javascript" src="/scripts/app.js"></script>
   <script type="text/javascript" src="/scripts/populateTable.js"></script>
   <script type="text/javascript" src="/scripts/tableAddParticipant.js"></script>
@@ -31,9 +33,10 @@
           <p class="card-text"><%= locals.event.description %></p>
           <a href="#" class="btn btn-primary">url: <%= locals.event.url %></a>
         </div>
-        <div class="card-footer text-muted">
+        <!-- No footer info atm -->
+        <!-- <div class="card-footer text-muted">
           footer some agregate data - total attendees / days till event
-        </div>
+        </div> -->
       </div>
     </section>
     <section>
@@ -48,7 +51,8 @@
           </tr>
         </tbody>
       </table>
-      <button id="eventAddParticipant">+ Add Participant</button>
+      <!-- No longer need to add as user is created before -->
+      <!-- <button id="eventAddParticipant">Add Participant</button> -->
     </section>
   </main>
   <span id='variableJSON' hidden>

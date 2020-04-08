@@ -7,15 +7,21 @@
   <link rel="stylesheet" href="/vendor/bootstrap.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
+    integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
 
   <!-- App CSS -->
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
 
   <!-- External JS -->
   <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="/vendor/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
 
   <!-- App JS -->
   <script type="text/javascript" src="/scripts/createEvent.js"></script>
@@ -32,22 +38,26 @@
       <section class='event-form-section row justify-content-center'>
         <div class="form-group col-8">
           <label for='event-title'>Event Title</label>
-          <input type="text" class="form-control overflow" id='event-title' name='title' placeholder="Name your event."  size='30' required>
+          <input type="text" class="form-control overflow" id='event-title' name='title' placeholder="Name your event."
+            size='30' required>
         </div>
 
         <div class="form-group col-10">
           <label for='event-description'>Description</label>
-          <textarea type="text" class="form-control" id='event-description' name='description' placeholder="Describe your event." rows="3"></textarea>
+          <textarea type="text" class="form-control" id='event-description' name='description'
+            placeholder="Describe your event." rows="3"></textarea>
         </div>
 
         <div class="form-group col-sm-6">
           <label for='user-name'>Host Name</label>
-          <input type="text" class="form-control" id='user-name' name='name' value='<%= locals.user.name %>' placeholder="Who's hosting?" required>
+          <input type="text" class="form-control" id='user-name' name='name' value='<%= locals.user.name %>'
+            placeholder="Who's hosting?" required>
         </div>
 
         <div class="form-group col-sm-6">
           <label for='user-email'>Host Email</label>
-          <input type="email" class="form-control" id='user-email' name='email' value='<%= locals.user.email %>' placeholder="@email" required>
+          <input type="email" class="form-control" id='user-email' name='email' value='<%= locals.user.email %>'
+            placeholder="@email" required>
           <small class="form-text text-muted">We'll never share your email with anyone else outside your event.</small>
         </div>
       </section>
@@ -92,4 +102,5 @@
     </form>
   </main>
 </body>
+
 </html>
