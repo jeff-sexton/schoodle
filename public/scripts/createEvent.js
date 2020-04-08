@@ -4,7 +4,12 @@
 // Add time button actions
 const addTime = function(event) {
   event.preventDefault();
-  const $heading = $('<th>').attr('scope', 'col').text('Event Time');
+  const $heading = $('<th>').attr('scope', 'col').text('Event Time').append(
+    $('<button>').addClass('btn btn-outline-danger btn-sm remove-time').append(
+      $('<div>').addClass('delete-cal-icon').html('<i class="far fa-calendar-times"></i>')
+    )
+  );
+
 
   const $startDayTime = $('<td>').append(
     $('<div>').addClass('event-time-div').append(
@@ -25,6 +30,22 @@ const addTime = function(event) {
   $table.children("thead").children("tr").append($heading);
   $table.children("tbody").children("tr").first().append($startDayTime);
   $table.children("tbody").children("tr").last().append($endDayTime);
+
+  // Attach event handler to just added header button
+  $('.remove-time').last().click(function(event) {
+    event.preventDefault();
+
+    const $header = $(this).parent('th');
+    const colIndex = $header.siblings().length;
+
+    const $startTime = $header.parents('thead').next('tbody').children('tr').first().children('td')[colIndex - 1];
+    const $endTime = $header.parents('thead').next('tbody').children('tr').last().children('td')[colIndex - 1];
+
+    $header.remove();
+    $startTime.remove();
+    $endTime.remove();
+
+  });
 };
 
 // CreateEvent button actions

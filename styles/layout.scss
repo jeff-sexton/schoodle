@@ -17,6 +17,18 @@ body {
       th {
         vertical-align: middle;
         text-align: center;
+
+        .remove-time {
+          margin-left: 10px;
+          height: 25px;
+          width: 25px;
+
+          .delete-cal-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
       }
 
       .event-time-div {
