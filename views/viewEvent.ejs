@@ -59,13 +59,19 @@
             <tr>
               <th scope="col">Start Time</th>
               <% for(const time of locals.times) { %>
-                <th scope='col'><%= time.start_time %></th>
+                <th scope='col'>
+                  <%= moment(time.start_time).format("dddd, MMMM Do YYYY, h:mm:ss a") %>
+                  <%= time.time_zone %>
+                </th>
               <% } %>
             </tr>
             <tr>
               <th scope="col">End Time</th>
               <% for(const time of locals.times) { %>
-                <th scope='col'><%= time.end_time %></th>
+                <th scope='col'>
+                  <%= moment(time.end_time).format("dddd, MMMM Do YYYY, h:mm:ss a") %>
+                  <%= time.time_zone %>
+                </th>
               <% } %>
             </tr>
             <tr>

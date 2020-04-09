@@ -52,21 +52,24 @@ const addTime = function(event) {
 const createEvent = function(event) {
   event.preventDefault();
 
-  // get local time zone offset to UTC in hours
-  const offset = new Date().getTimezoneOffset() / -60;
-  //format as 2 digit string
-  let offsetStr = String(Math.abs(offset)).padStart(2,'0');
-  if (offset < 0) {
-    offsetStr = `-${offsetStr}`;
-  } else {
-    offsetStr = `+${offsetStr}`;
-  }
+  // removing because there is no way to localize the users arriving at the view page
+  // will document timezone with user setting on create page instead
 
-  //Get form data and append timezone offset string
-  let formData = $(this).serialize();
-  formData += `&offset=${offsetStr}`;
+  // // get local time zone offset to UTC in hours
+  // const offset = new Date().getTimezoneOffset() / -60;
+  // //format as 2 digit string
+  // let offsetStr = String(Math.abs(offset)).padStart(2,'0');
+  // if (offset < 0) {
+  //   offsetStr = `-${offsetStr}`;
+  // } else {
+  //   offsetStr = `+${offsetStr}`;
+  // }
 
-  $.post('/events', formData)
+  // //Get form data and append timezone offset string
+  // let formData = $(this).serialize();
+  // formData += `&offset=${offsetStr}`;
+
+  $.post('/events', $(this).serialize())
     .then(({event}) => { //more data is being passed if we switch to single page application...
 
       // event.url contains the string URL to redirect to

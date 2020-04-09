@@ -50,6 +50,16 @@
         </div>
 
         <div class="form-group col-sm-6">
+          <label>Event Time Zone:
+            <select class="custom-select" name='time_zone'>
+              <option value='EST'>EST</option>
+              <option value='CMT'>CMT</option>
+              <option value='PST' selected>PST</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="form-group col-sm-6">
           <label for='user-name'>Host Name</label>
           <input type="text" class="form-control" id='user-name' name='name' value='<%= locals.user.name %>'
             placeholder="Who's hosting?" required>
