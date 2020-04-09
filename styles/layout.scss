@@ -8,8 +8,35 @@ body {
   padding-top: 50px;
 
   h1 {
-    color: #244751;
+    color: hsl(193, 38%, 23%);
   }
+  .vote-details {
+    // display: flex;
+    // flex-direction: column;
+    // align-items: center;
+    // justify-content: center;
+
+    .table-responsive {
+      width: auto;
+    }
+
+    .table {
+      width: auto;
+      th, td {
+        vertical-align: middle;
+        text-align: center;
+      }
+      .user-area {
+        background: aliceblue;
+
+        .custom-select {
+          width: auto;
+        }
+      }
+    }
+
+  }
+
   .times-form-section {
     .table {
       width: auto;

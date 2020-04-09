@@ -49,7 +49,21 @@
             placeholder="Describe your event." rows="3"></textarea>
         </div>
 
+
         <div class="form-group col-sm-6">
+          <label for='user-name'>Host Name</label>
+          <input type="text" class="form-control" id='user-name' name='name' value='<%= locals.user.name %>'
+          placeholder="Who's hosting?" required>
+        </div>
+
+        <div class="form-group col-sm-6">
+          <label for='user-email'>Host Email</label>
+          <input type="email" class="form-control" id='user-email' name='email' value='<%= locals.user.email %>'
+          placeholder="@email" required>
+          <small class="form-text text-muted">We'll never share your email with anyone else outside your event.</small>
+        </div>
+
+        <div class="form-group col-3">
           <label>Event Time Zone:
             <select class="custom-select" name='time_zone'>
               <option value='EST'>EST</option>
@@ -58,20 +72,8 @@
             </select>
           </label>
         </div>
-
-        <div class="form-group col-sm-6">
-          <label for='user-name'>Host Name</label>
-          <input type="text" class="form-control" id='user-name' name='name' value='<%= locals.user.name %>'
-            placeholder="Who's hosting?" required>
-        </div>
-
-        <div class="form-group col-sm-6">
-          <label for='user-email'>Host Email</label>
-          <input type="email" class="form-control" id='user-email' name='email' value='<%= locals.user.email %>'
-            placeholder="@email" required>
-          <small class="form-text text-muted">We'll never share your email with anyone else outside your event.</small>
-        </div>
       </section>
+
 
       <section class='times-form-section'>
         <button class='btn btn-secondary' id="add-time-btn">+Add Time</button>
