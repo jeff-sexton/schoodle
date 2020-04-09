@@ -1,11 +1,25 @@
+const express = require('express');
+const router = express.Router();
 
 
+module.exports = (db) => {
 
-// - Read votes
-// - attaced to event get
+  // Add votes for an event or update if needed - also updates user (if needed)
+  router.post('/', (req, res) => {
 
-// - Edit votes
-// - POST /votes/:id
+    db.processVotesForm(req.body, req.user)
+      .then(data => {
+        res
+          .status(200)
+          .send();
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
 
-// - Add votes
-// - POST /votes
+
+  return router;
+};

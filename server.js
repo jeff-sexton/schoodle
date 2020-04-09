@@ -16,6 +16,7 @@ const morgan = require('morgan');
 
 const userQueries = require('./lib/userQueries');
 const eventQueries = require('./lib/eventQueries');
+const votesQueries = require('./lib/voteQueries');
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -77,11 +78,15 @@ const usersRoutes = require("./routes/users");
 const widgetsRoutes = require("./routes/widgets");
 const createRoutes = require("./routes/create");
 const eventsRoutes = require("./routes/events");
+const votesRoutes = require("./routes/votes");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/create", createRoutes());
 app.use("/events", eventsRoutes(eventQueries));
+app.use("/votes", votesRoutes(votesQueries));
+
+
 app.use("/api/users", usersRoutes(userQueries));
 app.use("/api/widgets", widgetsRoutes(userQueries));
 // Note: mount other resources here, using the same pattern above
