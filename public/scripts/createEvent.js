@@ -4,13 +4,12 @@
 // Add time button actions
 const addTime = function(event) {
   event.preventDefault();
-  console.log(this);
+
   const $heading = $('<th>').attr('scope', 'col').text('Event Time').append(
     $('<button>').addClass('btn btn-outline-danger btn-sm remove-time').append(
       $('<div>').addClass('delete-cal-icon').html('<i class="far fa-calendar-times"></i>')
     )
   );
-
 
   const $startDayTime = $('<td>').append(
     $('<div>').addClass('event-time-div').append(
@@ -27,7 +26,6 @@ const addTime = function(event) {
   );
 
   const $table = $(this).parents('table');
-  console.log($table);
 
   $table.children("thead").children("tr").children('th').last().before($heading);
   $table.children("tbody").children("tr").first().append($startDayTime);
@@ -80,7 +78,6 @@ const createEvent = function(event) {
 };
 
 $(() => {
-
   // Attach handler to Add time Button
   $("#add-time-btn").click(addTime);
 

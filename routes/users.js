@@ -1,12 +1,7 @@
-/*
- * All routes for Users are defined here
- * Since this file is loaded in server.js into api/users,
- *   these routes are mounted onto /users
- * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
- */
-
 const express = require('express');
 const router = express.Router();
+
+   // Remove this user routes since user objects are never accessed directly by the user?
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
@@ -33,7 +28,6 @@ module.exports = (db) => {
       });
   });
 
-  // Put needs to be tested!!
   router.put("/:user_id", (req, res) => {
     const name = req.data.name;
     const email = req.data.email;

@@ -1,5 +1,6 @@
 /* eslint-env jquery */
 /* global window */
+/* global ClipboardJS */
 
 const submitVote = function(event) {
   event.preventDefault();
@@ -15,10 +16,8 @@ const submitVote = function(event) {
 };
 
 $(() => {
-
   new ClipboardJS('.copy-url');
 
   // Attach handler to sumbit vote form submission
-  $('form').submit(submitVote);
-
+  $('#vote-form').submit(submitVote);
 });
