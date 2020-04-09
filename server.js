@@ -46,20 +46,9 @@ app.use(express.static("public"));
 app.use((req, res, next) => {
   const userId = req.session.user_id;
 
-  if (userId) {
-    userQueries.getUser(userId)
-      .then(user => {
-        req.user = user;
-        next();
-      })
-      .catch(() => { // complete catch logic for user sessions that are invalid
-        // req.session = null
-        // res
-        //   .status(500)
-        //   .redirect('/');
-      });
+  console.log('\n ****userId \n', userId, '\n');
 
-  } else {
+  const assignNewSession = () => {
     userQueries.addUser()
       .then(user => {
         // assign session
@@ -68,8 +57,25 @@ app.use((req, res, next) => {
         req.user = user;
         next();
       });
-  }
+  };
 
+  if (userId) {
+    userQueries.getUser(userId)
+      .then(user => {
+        if (user) {
+          req.user = user;
+          next();
+        } else {
+          // replace invalid session with new user session
+          assignNewSession();
+        }
+      })
+      .catch(() => {
+        assignNewSession();
+      });
+  } else {
+    assignNewSession();
+  }
 });
 
 // Separated Routes for each Resource
@@ -84,7 +90,7 @@ const votesRoutes = require("./routes/votes");
 app.use("/create", createRoutes());
 app.use("/events", eventsRoutes(eventQueries));
 app.use("/votes", votesRoutes(votesQueries));
- // remove api for users?
+// remove api for users?
 app.use("/api/users", usersRoutes(userQueries));
 
 // Development route to "log in" as an existing user by id
