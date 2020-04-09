@@ -9,6 +9,10 @@ INSERT INTO times (id, event_id, start_time, end_time, time_zone) VALUES (3103, 
 INSERT INTO times (id, event_id, start_time, end_time, time_zone) VALUES (3204, 2202, '2020-04-16 10:00:00', '2020-04-16 12:00:00', 'PST');
 INSERT INTO times (id, event_id, start_time, end_time, time_zone) VALUES (3205, 2202, '2020-04-20 10:00:00', '2020-04-20 12:00:00', 'PST');
 INSERT INTO times (id, event_id, start_time, end_time, time_zone) VALUES (3206, 2202, '2020-04-22 16:00:00', '2020-04-22 18:00:00', 'PST');
+INSERT INTO times (id, event_id, start_time, end_time, time_zone) VALUES (3210, 2202, '2020-04-24 10:00:00', '2020-04-24 12:00:00', 'PST');
+INSERT INTO times (id, event_id, start_time, end_time, time_zone) VALUES (3211, 2202, '2020-04-26 16:00:00', '2020-04-26 18:00:00', 'PST');
+INSERT INTO times (id, event_id, start_time, end_time, time_zone) VALUES (3212, 2202, '2020-04-28 10:00:00', '2020-04-28 12:00:00', 'PST');
+INSERT INTO times (id, event_id, start_time, end_time, time_zone) VALUES (3213, 2202, '2020-04-30 16:00:00', '2020-04-30 18:00:00', 'PST');
 
 -- Event 3
 INSERT INTO times (id, event_id, start_time, end_time, time_zone) VALUES (3207, 2203, '2020-04-16 10:00:00', '2020-04-16 12:00:00', 'PST');
