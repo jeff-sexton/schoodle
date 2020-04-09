@@ -1,23 +1,22 @@
 /* eslint-env jquery */
+/* global window */
 
 const submitVote = function(event) {
   event.preventDefault();
 
-  console.log($(this).serialize());
-
-  $.post('/votes', $(this).serialize());
-    // .then(({event}) => { //more data is being passed if we switch to single page application...
-
-    //   // event.url contains the string URL to redirect to
-    //   window.location.href = `/events/${event.url}`;
-    // });
-
+  $.post('/votes', $(this).serialize())
+    .then((data) => {
+      window.location.reload();
+    })
+    .catch(err => {
+      console.log(err);
+      // call error handling here
+    });
 };
 
 $(() => {
 
   // Attach handler to sumbit vote form submission
   $('form').submit(submitVote);
-
 
 });

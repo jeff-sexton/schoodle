@@ -3,34 +3,21 @@ const router = express.Router();
 
 
 module.exports = (db) => {
-  // - Read votes
-  // - attaced to event get
 
-  // - Edit votes
-  // - POST /votes/:id
-
-  // - Add votes
-  // - POST /votes
-
-  // Add event - also updates user(if needed) and adds event times from create page
+  // Add votes for an event or update if needed - also updates user (if needed)
   router.post('/', (req, res) => {
 
-    // console.log(req.body);
-
-    db.processVotesForm(req.body, req.user);
-
-
-
-
-
-    // db.createEventFromForm(req.body, req.user)
-    //   .then((data) => {
-
-    //     // data = {user, event, times} from event creation in the db
-
-    //     // redirect to event url
-    //     res.json(data); //can't respond with a res.redirect() for an ajax post !!!!
-    //   });
+    db.processVotesForm(req.body, req.user)
+      .then(data => {
+        res
+          .status(200)
+          .send();
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
   });
 
 
