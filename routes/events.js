@@ -1,11 +1,3 @@
-/* eslint-disable camelcase */
-/*
- * All routes for Events are defined here
- * Since this file is loaded in server.js into /Events,
- *   these routes are mounted onto /Events
- * See: https://expressjs.com/en/guide/using-middleware.html#middleware.router
- */
-
 const express = require('express');
 const router = express.Router();
 const moment = require('moment');
@@ -21,6 +13,7 @@ module.exports = (db) => {
             .then(data => {
               // make moment available in .ejs
               data.moment = moment;
+              data.host = req.headers.host;
 
               res.render("viewEvent", data);
               // res.json(data); // to check data representation

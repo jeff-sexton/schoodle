@@ -1,33 +1,31 @@
 // See: https://sass-lang.com/
 
-:root {
-  --main-bg-color: #EEE;
-}
-
 body {
   padding-top: 50px;
 
-  h1 {
-    color: hsl(193, 38%, 23%);
+  .url-div {
+    margin: auto;
+    .copy-url {
+      height: 22px;
+      i {
+        vertical-align: top;
+
+      }
+    }
   }
   .vote-details {
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;
-    // justify-content: center;
-
-    .table-responsive {
-      width: auto;
-    }
-
     .table {
       width: auto;
+      margin: auto;
       th, td {
         vertical-align: middle;
         text-align: center;
       }
       .user-area {
-        background: aliceblue;
+
+        #user-name {
+          min-width: 125px;
+        }
 
         .custom-select {
           width: auto;
@@ -40,6 +38,7 @@ body {
   .times-form-section {
     .table {
       width: auto;
+      margin: auto;
 
       th {
         vertical-align: middle;

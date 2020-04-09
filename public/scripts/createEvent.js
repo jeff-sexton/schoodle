@@ -4,12 +4,12 @@
 // Add time button actions
 const addTime = function(event) {
   event.preventDefault();
+
   const $heading = $('<th>').attr('scope', 'col').text('Event Time').append(
     $('<button>').addClass('btn btn-outline-danger btn-sm remove-time').append(
       $('<div>').addClass('delete-cal-icon').html('<i class="far fa-calendar-times"></i>')
     )
   );
-
 
   const $startDayTime = $('<td>').append(
     $('<div>').addClass('event-time-div').append(
@@ -25,9 +25,9 @@ const addTime = function(event) {
     )
   );
 
-  const $table = $(this).parent().find('table');
+  const $table = $(this).parents('table');
 
-  $table.children("thead").children("tr").append($heading);
+  $table.children("thead").children("tr").children('th').last().before($heading);
   $table.children("tbody").children("tr").first().append($startDayTime);
   $table.children("tbody").children("tr").last().append($endDayTime);
 
@@ -36,7 +36,7 @@ const addTime = function(event) {
     event.preventDefault();
 
     const $header = $(this).parent('th');
-    const colIndex = $header.siblings().length;
+    const colIndex = $header.siblings().length - 1;
 
     const $startTime = $header.parents('thead').next('tbody').children('tr').first().children('td')[colIndex - 1];
     const $endTime = $header.parents('thead').next('tbody').children('tr').last().children('td')[colIndex - 1];
@@ -78,7 +78,6 @@ const createEvent = function(event) {
 };
 
 $(() => {
-
   // Attach handler to Add time Button
   $("#add-time-btn").click(addTime);
 

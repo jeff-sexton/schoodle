@@ -7,10 +7,12 @@
   <!-- External CSS -->
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
   <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
-  <link rel="stylesheet" href="/vendor/bootstrap.css" type="text/css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+    crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
-  integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V"
-  crossorigin="anonymous">
+    integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V"
+    crossorigin="anonymous">
 
   <!-- App CSS -->
   <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
@@ -32,86 +34,100 @@
   <%- include('partials/_header') %>
 
   <main class="container">
-    <header class='row justify-content-center'>
-      <h1>Create New Event</h1>
-    </header>
+
     <form method='POST' action='/events' class='' id='create-event-form'>
-      <section class='event-form-section row justify-content-center'>
-        <div class="form-group col-8">
-          <label for='event-title'>Event Title</label>
-          <input type="text" class="form-control overflow" id='event-title' name='title' placeholder="Name your event."
-            size='30' required>
+      <div class="card text-center">
+        <div class="card-header">
+          <h5 class="card-title">Create New Event</h5>
         </div>
+        <div class="card-body">
+          <section class='event-form-section row justify-content-center'>
+            <div class="form-group col-8">
+              <label for='event-title'>Event Title</label>
+              <input type="text" class="form-control overflow" id='event-title' name='title' placeholder="Name your event."
+                size='30' required>
+            </div>
 
-        <div class="form-group col-10">
-          <label for='event-description'>Description</label>
-          <textarea type="text" class="form-control" id='event-description' name='description'
-            placeholder="Describe your event." rows="3"></textarea>
+            <div class="form-group col-10">
+              <label for='event-description'>Description</label>
+              <textarea type="text" class="form-control" id='event-description' name='description'
+                placeholder="Describe your event." rows="3"></textarea>
+            </div>
+
+
+            <div class="form-group col-sm-6">
+              <label for='user-name'>Host Name</label>
+              <input type="text" class="form-control" id='user-name' name='name' value='<%= locals.user.name %>'
+              placeholder="Who's hosting?" required>
+            </div>
+
+            <div class="form-group col-sm-6">
+              <label for='user-email'>Host Email</label>
+              <input type="email" class="form-control" id='user-email' name='email' value='<%= locals.user.email %>'
+              placeholder="@email" required>
+              <small class="form-text text-muted">We'll never share your email with anyone else outside your event.</small>
+            </div>
+
+            <div class="form-group col-3">
+              <label>Event Time Zone:
+                <select class="custom-select" name='time_zone'>
+                  <option value='EST'>EST</option>
+                  <option value='CMT'>CMT</option>
+                  <option value='PST' selected>PST</option>
+                </select>
+              </label>
+            </div>
+          </section>
         </div>
-
-
-        <div class="form-group col-sm-6">
-          <label for='user-name'>Host Name</label>
-          <input type="text" class="form-control" id='user-name' name='name' value='<%= locals.user.name %>'
-          placeholder="Who's hosting?" required>
+        <!-- <div class="card-footer text-muted">
+        </div> -->
+      </div>
+      <div class="card text-center">
+        <div class="card-header">
+          <h5 class="card-title">Add Times for your Event:</h5>
         </div>
+        <div class="card-body">
+          <section class='times-form-section'>
+            <div class="table-responsive">
 
-        <div class="form-group col-sm-6">
-          <label for='user-email'>Host Email</label>
-          <input type="email" class="form-control" id='user-email' name='email' value='<%= locals.user.email %>'
-          placeholder="@email" required>
-          <small class="form-text text-muted">We'll never share your email with anyone else outside your event.</small>
+              <table id="eventTimesTable" class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Event Time</th>
+                    <th scope='col'><button class='btn btn-secondary' id="add-time-btn">+Add</button></th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <th scope="row">Start Time</th>
+                    <td>
+                      <div class='event-time-div'>
+                        <input type='date' name='start_dates' required>
+                        <input type='time' name='start_times' required>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <th scope="row">End Time</th>
+                    <td>
+                      <div class='event-time-div'>
+                        <input type='date' name='end_dates' required>
+                        <input type='time' name='end_times' required>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+          <button type="submit" class="btn btn-primary">Create Event</button>
         </div>
-
-        <div class="form-group col-3">
-          <label>Event Time Zone:
-            <select class="custom-select" name='time_zone'>
-              <option value='EST'>EST</option>
-              <option value='CMT'>CMT</option>
-              <option value='PST' selected>PST</option>
-            </select>
-          </label>
-        </div>
-      </section>
-
-
-      <section class='times-form-section'>
-        <button class='btn btn-secondary' id="add-time-btn">+Add Time</button>
-        <div class="table-responsive">
-          <table id="eventTimesTable" class="table table-bordered">
-            <thead>
-              <tr>
-                <th scope="col"></th>
-                <th scope="col">Event Time</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr>
-                <th scope="row">Start Time</th>
-                <td>
-                  <div class='event-time-div'>
-                    <input type='date' name='start_dates' required>
-                    <input type='time' name='start_times' required>
-                  </div>
-                </td>
-              </tr>
-
-              <tr>
-                <th scope="row">End Time</th>
-                <td>
-                  <div class='event-time-div'>
-                    <input type='date' name='end_dates' required>
-                    <input type='time' name='end_times' required>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <button type="submit" class="btn btn-primary">Create Event</button>
+        <!-- <div class="card-footer text-muted">
+        </div> -->
+      </div>
     </form>
   </main>
 </body>

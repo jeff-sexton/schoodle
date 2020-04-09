@@ -11,6 +11,7 @@ module.exports = (db) => {
       .then(data => {
         res
           .status(200)
+            // is this the right status code?
           .send();
       })
       .catch(err => {

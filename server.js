@@ -75,7 +75,6 @@ app.use((req, res, next) => {
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
-const widgetsRoutes = require("./routes/widgets");
 const createRoutes = require("./routes/create");
 const eventsRoutes = require("./routes/events");
 const votesRoutes = require("./routes/votes");
@@ -85,12 +84,8 @@ const votesRoutes = require("./routes/votes");
 app.use("/create", createRoutes());
 app.use("/events", eventsRoutes(eventQueries));
 app.use("/votes", votesRoutes(votesQueries));
-
-
+ // remove api for users?
 app.use("/api/users", usersRoutes(userQueries));
-app.use("/api/widgets", widgetsRoutes(userQueries));
-// Note: mount other resources here, using the same pattern above
-
 
 // Development route to "log in" as an existing user by id
 app.get('/login/:id', (req, res) => {
@@ -105,7 +100,7 @@ app.get('/login/:id', (req, res) => {
 app.get("/", (req, res) => {
   const data = {user: req.user};
 
-  res.render("index", data);
+  res.redirect("/create");
   // res.json(user); // to check data representation
 });
 
