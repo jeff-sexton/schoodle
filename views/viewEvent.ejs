@@ -194,7 +194,8 @@
                 <% for(const guest of locals.guests) { %>
                   <tr class='table-secondary'>
                     <th scope='row'><%= guest.user.name %></th>
-                    <% for(const vote of guest.userVotes) { %>
+                    <% for(let col = 0; col < numOfTimes; col++) { %>
+                      <% const vote = guest.userVotes[col]; %>
                       <td>
                         <% if (vote.vote) { %>
                           Yes
