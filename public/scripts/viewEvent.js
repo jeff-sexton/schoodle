@@ -16,6 +16,8 @@ const submitVote = function(event) {
 
 $(() => {
 
+  new ClipboardJS('.copy-url');
+
   // Attach handler to sumbit vote form submission
   $('form').submit(submitVote);
 

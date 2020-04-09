@@ -21,6 +21,7 @@ module.exports = (db) => {
             .then(data => {
               // make moment available in .ejs
               data.moment = moment;
+              data.host = req.headers.host;
 
               res.render("viewEvent", data);
               // res.json(data); // to check data representation
