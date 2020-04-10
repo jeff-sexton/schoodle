@@ -57,55 +57,75 @@
             </div>
           </div>
         </div>
-        <!-- No footer info atm -->
-        <!-- <div class="card-footer text-muted">
-          footer some agregate data - total attendees / days till event
-        </div> -->
       </div>
     </section>
 
     <section class='vote-details'>
       <div class="card text-center">
         <div class="card-header">
-          <h6 class="card-title">Vote for the best times for you.</h6>
+          <h6 class="card-title">Vote for the best times for you below.</h6>
         </div>
         <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-bordered">
-              <thead>
-                <tr>
-                  <th scope="col">Start Time</th>
-                  <% for(const time of locals.times) { %>
-                    <th scope='col'>
-                      <div><%= moment(time.start_time).format("dddd") %></div>
-                      <div><%= moment(time.start_time).format("MMMM Do YYYY") %></div>
-                      <div><%= moment(time.start_time).format("h:mm A") %> <%= time.time_zone %></div>
-                    </th>
-                  <% } %>
-                </tr>
-                <tr>
-                  <th scope="col">End Time</th>
-                  <% for(const time of locals.times) { %>
-                    <th scope='col'>
-                      <div><%= moment(time.end_time).format("dddd") %></div>
-                      <div><%= moment(time.end_time).format("MMMM Do YYYY") %></div>
-                      <div><%= moment(time.end_time).format("h:mm A") %> <%= time.time_zone %></div>
-                    </th>
-                  <% } %>
-                </tr>
-                <tr>
-                  <th scope="col"></th>
-                  <% for(const time of locals.times) { %>
-                    <th scope='col'>
-                      <%= time.total_votes %> votes yes!
-                    </th>
-                  <% } %>
-                </tr>
+          <form method='POST' action='/votes' id='vote-form'>
 
-              </thead>
+            <div class='email-container'>
+                <div class='left'>
+                  <div class="form-group col-10">
+                    <label for='user-email'>Email:</label>
+                    <input type="email" class="form-control" id='user-email' name='email' value='<%= locals.user.email %>' placeholder="@email">
+                  </div>
+                  <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                    <label class="custom-control-label" for="customCheck1">Check for Email updates</label>
+                  </div>
+                </div>
+                <div class='right'>
+                  <button class='btn btn-success'>Submit Votes</button>
+                </div>
+            </div>
 
-              <tbody>
-                <form method='POST' action='/votes' id='vote-form'>
+            <div class="table-responsive">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">Start Time</th>
+                    <% for(const time of locals.times) { %>
+                      <th scope='col'>
+                        <div><%= moment(time.start_time).format("dddd") %></div>
+                        <div><span class='month-day'><%= moment(time.start_time).format("MMMM Do") %></span> <%= moment(time.start_time).format("YYYY") %></div>
+                        <div><%= moment(time.start_time).format("h:mm A") %></div>
+                        <div><%= time.time_zone %></div>
+                      </th>
+                    <% } %>
+                  </tr>
+                  <tr>
+                    <th scope="col">End Time</th>
+                    <% for(const time of locals.times) { %>
+                      <th scope='col'>
+                        <div><%= moment(time.end_time).format("dddd") %></div>
+                        <div><span class='month-day'><%= moment(time.end_time).format("MMMM Do") %></span> <%= moment(time.end_time).format("YYYY") %></div>
+                        <div><%= moment(time.end_time).format("h:mm A") %></div>
+                        <div><%= time.time_zone %></div>
+                      </th>
+                    <% } %>
+                  </tr>
+                  <tr>
+                    <th scope="col"></th>
+                    <% for(const time of locals.times) { %>
+                      <th scope='col'>
+                        <% const total_votes = time.total_votes %>
+                        <% if (total_votes) { %>
+                          <%= total_votes %> votes yes!
+                        <% } else { %>
+                          No votes yet.
+                        <% } %>
+                      </th>
+                    <% } %>
+                  </tr>
+
+                </thead>
+
+                <tbody>
                   <tr class='table-primary user-area'>
                     <th scope="row" >
                       <div class="form-group">
@@ -119,13 +139,16 @@
                     <% if (!locals.userVotes || locals.userVotes.userVotes.length === 0 ) { %>
                       <% for(let col = 0; col < numOfTimes; col++) { %>
                         <td>
-                          <label>Can you attend?
+                          <div>
+                            <label>Can you attend?</label>
+                          </div>
+                          <div>
                             <select class="custom-select" name='vote-id-new-time_id-<%= locals.times[col].id %>'>
                               <option value='true'>Yes</option>
                               <option value='false'>No</option>
                               <option value='null' selected>-</option>
                             </select>
-                          </label>
+                          </div>
                         </td>
                      <% } %>
 
@@ -158,64 +181,44 @@
 
                         <% } else { %>
                           <td>
-                            <label>Can you attend?
+                            <div>
+                              <label>Can you attend?</label>
+                            </div>
+                            <div>
                               <select class="custom-select" name='vote-id-new-time_id-<%= locals.times[col].id %>'>
                                 <option value='true'>Yes</option>
                                 <option value='false'>No</option>
                                 <option value='null' selected>-</option>
                               </select>
-                            </label>
+                            </div>
                           </td>
                         <% } %>
                       <% } %>
                     <% } %>
                   </tr>
 
-                  <% const emailSpan = Math.ceil((numOfTimes + 1) / 2); %>
-                  <% const submitSpan = (numOfTimes + 1) - emailSpan; %>
-
-                  <tr class='table-primary user-area'>
-                    <td colspan='<%= emailSpan %>'>
-                      <div class="form-group">
-                        <label for='user-email'>Email:</label>
-                        <input type="email" class="form-control" id='user-email' name='email' value='<%= locals.user.email %>' placeholder="@email">
-                      </div>
-                      <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">Check for Email updates</label>
-                      </div>
-                    </td>
-                    <td colspan='<%= submitSpan %>'>
-                      <button class='btn btn-success'>Submit</button>
-                    </td>
-                  </tr>
-                </form>
-
-                <% for(const guest of locals.guests) { %>
-                  <tr class='table-secondary'>
-                    <th scope='row'><%= guest.user.name %></th>
-                    <% for(const vote of guest.userVotes) { %>
-                      <td>
-                        <% if (vote.vote) { %>
-                          Yes
-                        <% } else if (vote.vote === false) { %>
-                          No
-                        <% } else { %>
-                          -
-                        <% } %>
-                      </td>
-                    <% } %>
-                  </tr>
-                <% } %>
-              </tbody>
-            </table>
-          </div>
-
+                  <% for(const guest of locals.guests) { %>
+                    <tr class='table-secondary'>
+                      <th scope='row'><%= guest.user.name %></th>
+                      <% for(let col = 0; col < numOfTimes; col++) { %>
+                        <% const vote = guest.userVotes[col]; %>
+                        <td>
+                          <% if (vote && vote.vote) { %>
+                            Yes
+                          <% } else if (vote && vote.vote === false) { %>
+                            No
+                          <% } else { %>
+                            -
+                          <% } %>
+                        </td>
+                      <% } %>
+                    </tr>
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+          </form>
         </div>
-        <!-- No footer info atm -->
-        <!-- <div class="card-footer text-muted">
-          footer some agregate data - total attendees / days till event
-        </div> -->
       </div>
     </section>
   </main>

@@ -69,6 +69,15 @@ const createEvent = function(event) {
   // let formData = $(this).serialize();
   // formData += `&offset=${offsetStr}`;
 
+  // Disable repeat form submissions
+  // Remove submit handler
+  $(this).off('submit', createEvent);
+  // bind new handler to give error message
+  $(this).submit(()=>{
+    console.log('Please only click submit once');
+    return false;
+  });
+
   $.post('/events', $(this).serialize())
     .then(({event}) => { //more data is being passed if we switch to single page application...
 
@@ -82,5 +91,5 @@ $(() => {
   $("#add-time-btn").click(addTime);
 
   // Attach handler to Create event form submission
-  $('form').submit(createEvent);
+  $('form').on('submit', createEvent);
 });

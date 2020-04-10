@@ -14,12 +14,26 @@ body {
     }
   }
   .vote-details {
+    .email-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .left, .right {
+        width: 50%;
+        margin: 10px 0px;
+      }
+    }
     .table {
       width: auto;
       margin: auto;
       th, td {
         vertical-align: middle;
         text-align: center;
+
+        .month-day {
+          white-space: nowrap;
+        }
       }
       .user-area {
 
