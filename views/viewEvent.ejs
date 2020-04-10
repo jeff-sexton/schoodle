@@ -78,8 +78,9 @@
                   <% for(const time of locals.times) { %>
                     <th scope='col'>
                       <div><%= moment(time.start_time).format("dddd") %></div>
-                      <div><%= moment(time.start_time).format("MMMM Do YYYY") %></div>
-                      <div><%= moment(time.start_time).format("h:mm A") %> <%= time.time_zone %></div>
+                      <div><span class='month-day'><%= moment(time.start_time).format("MMMM Do") %></span> <%= moment(time.start_time).format("YYYY") %></div>
+                      <div><%= moment(time.start_time).format("h:mm A") %></div>
+                      <div><%= time.time_zone %></div>
                     </th>
                   <% } %>
                 </tr>
@@ -88,8 +89,9 @@
                   <% for(const time of locals.times) { %>
                     <th scope='col'>
                       <div><%= moment(time.end_time).format("dddd") %></div>
-                      <div><%= moment(time.end_time).format("MMMM Do YYYY") %></div>
-                      <div><%= moment(time.end_time).format("h:mm A") %> <%= time.time_zone %></div>
+                      <div><span class='month-day'><%= moment(time.end_time).format("MMMM Do") %></span> <%= moment(time.end_time).format("YYYY") %></div>
+                      <div><%= moment(time.end_time).format("h:mm A") %></div>
+                      <div><%= time.time_zone %></div>
                     </th>
                   <% } %>
                 </tr>

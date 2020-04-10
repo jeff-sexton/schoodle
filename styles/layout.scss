@@ -20,6 +20,10 @@ body {
       th, td {
         vertical-align: middle;
         text-align: center;
+
+        .month-day {
+          white-space: nowrap;
+        }
       }
       .user-area {
 
