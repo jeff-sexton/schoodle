@@ -45,6 +45,7 @@
         <div class="card-body">
 
           <p class="card-text"><%= locals.event.description %></p>
+          <p class="card-text">Hosted by: <%= locals.event.owner_name %></p>
           <label for='event-url'>Event URL:</label>
           <div class="input-group col-6 url-div">
             <input type="text" class="form-control" id='event-url' placeholder="Event URL" value='<%= locals.host %>/events/<%= locals.event.url %>' aria-label="Event URL" aria-describedby="addon-wrapping" readonly>
