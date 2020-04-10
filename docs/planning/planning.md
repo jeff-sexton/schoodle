@@ -1,4 +1,4 @@
-# Scoodle Midterm Project
+# Schoodle Midterm Project
 
  - Jeff Sexton
  - Allen Li
@@ -146,8 +146,6 @@ B R E A D
 
 - Delete votes
   - not needed
-
-
 
   ## Template Var Format Example
 
