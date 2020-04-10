@@ -204,9 +204,9 @@
                     <% for(let col = 0; col < numOfTimes; col++) { %>
                       <% const vote = guest.userVotes[col]; %>
                       <td>
-                        <% if (vote.vote) { %>
+                        <% if (vote && vote.vote) { %>
                           Yes
-                        <% } else if (vote.vote === false) { %>
+                        <% } else if (vote && vote.vote === false) { %>
                           No
                         <% } else { %>
                           -
