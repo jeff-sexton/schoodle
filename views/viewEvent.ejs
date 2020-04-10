@@ -143,13 +143,16 @@
                     <% if (!locals.userVotes || locals.userVotes.userVotes.length === 0 ) { %>
                       <% for(let col = 0; col < numOfTimes; col++) { %>
                         <td>
-                          <label>Can you attend?
+                          <div>
+                            <label>Can you attend?</label>
+                          </div>
+                          <div>
                             <select class="custom-select" name='vote-id-new-time_id-<%= locals.times[col].id %>'>
                               <option value='true'>Yes</option>
                               <option value='false'>No</option>
                               <option value='null' selected>-</option>
                             </select>
-                          </label>
+                          </div>
                         </td>
                      <% } %>
 
@@ -182,13 +185,16 @@
 
                         <% } else { %>
                           <td>
-                            <label>Can you attend?
+                            <div>
+                              <label>Can you attend?</label>
+                            </div>
+                            <div>
                               <select class="custom-select" name='vote-id-new-time_id-<%= locals.times[col].id %>'>
                                 <option value='true'>Yes</option>
                                 <option value='false'>No</option>
                                 <option value='null' selected>-</option>
                               </select>
-                            </label>
+                            </div>
                           </td>
                         <% } %>
                       <% } %>
