@@ -99,7 +99,12 @@
                   <th scope="col"></th>
                   <% for(const time of locals.times) { %>
                     <th scope='col'>
-                      <%= time.total_votes %> votes yes!
+                      <% const total_votes = time.total_votes %>
+                      <% if (total_votes) { %>
+                        <%= total_votes %> votes yes!
+                      <% } else { %>
+                        No votes yet.
+                      <% } %>
                     </th>
                   <% } %>
                 </tr>
