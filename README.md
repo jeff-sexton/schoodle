@@ -7,13 +7,13 @@ How many times have you needed to plan a meeting, party or event but run into tr
 
 Schoodle solves this problem!
 
-Schoodle is an event coordination application the lets users create events with a number of proposed times and dates. Other users can then vote on each proposed time to indicate their availabilty; either Yes, No or Maybe. The event host can then use this information to determine the most appropiate time to schedule it.
+Schoodle is an event coordination application the lets users create events with any number of proposed times and dates. Other users can then vote on each time to indicate their availabilty; either Yes, No or Maybe. The event host can then use this information to determine the most appropiate time to schedule it.
 
 There are no user accounts needed to use the application. Anyone can create an event or vote on an existing event if they have the event URL. Each event is created and hosted at a randomly generated URL so the event host can share it only with their intended invitees. 
 
-The application assigns sessions to keep track of uniquiqe vistiors and enable users to revisit event pages to change their availabily.
+The application assigns sessions to keep track of unique vistiors and enable users to revisit event pages to change their availabily.
 
-Responsive elementes have also been included to allow the application to be used from a variety of screen sized. 
+Responsive elementes have also been included to allow the application to be used from a variety of screen sizes. 
 
 ## Final Product
 
