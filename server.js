@@ -46,8 +46,6 @@ app.use(express.static("public"));
 app.use((req, res, next) => {
   const userId = req.session.user_id;
 
-  console.log('\n ****userId \n', userId, '\n');
-
   const assignNewSession = () => {
     userQueries.addUser()
       .then(user => {
