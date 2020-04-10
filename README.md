@@ -17,9 +17,8 @@ Responsive elementes have also been included to allow the application to be used
 
 ## Final Product
 
-!["Small Screen View"](https://raw.githubusercontent.com/jeff-sexton/tweeter/master/docs/Tweeter-Small-View.png)
-!["Desktop View"](https://raw.githubusercontent.com/jeff-sexton/tweeter/master/docs/Tweeter-Desktop-View.png)
-!["UI Demo"](https://raw.githubusercontent.com/jeff-sexton/tweeter/master/docs/Tweeter-UI.gif)
+!["Create Page"](https://raw.githubusercontent.com/jeff-sexton/scoodle/master/docs/Schoodle_Create_Page.png)
+!["Event Page"](https://raw.githubusercontent.com/jeff-sexton/scoodle/master/docs/Schoodle_Event_Page.png)
 
 ## Dependencies
 
