@@ -1,10 +1,9 @@
 DROP TABLE IF EXISTS times CASCADE;
 
 CREATE TABLE times (
-  id SERIAL PRIMARY KEY NOT NULL,
-  event_id INTEGER NOT NULL REFERENCES events(id) ON DELETE CASCADE,
-
-  start_time TIMESTAMP NOT NULL,
-  end_time TIMESTAMP NOT NULL,
-  time_zone VARCHAR(10)
+  id serial PRIMARY KEY NOT NULL,
+  event_id integer NOT NULL REFERENCES events (id) ON DELETE CASCADE,
+  start_time timestamp NOT NULL,
+  end_time timestamp NOT NULL,
+  time_zone varchar(10)
 );
