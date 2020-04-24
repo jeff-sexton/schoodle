@@ -60,7 +60,7 @@ Responsive elementes have also been included to allow the application to be used
 - Automatically email any subscrbed users when changes are made
 - Connect to social media APIs to allow an event creator to invite guests through these channels
 - Add error feedback to the user by rendering it client side with DOM manipulation
-- Allow users to list all events they have created and voted on
+- ~~Allow users to list all events they have created and voted on~~
 - Allow event creators to edit event details and add/remove possible event times after event creation
 - Allow more event customization by allowing event creators to add images for the event
 - Allow the creation of permanent user accounts with sign on/off functionality
