@@ -33,8 +33,8 @@
 </body>
 
 <main class="container">
-  My Events
   <div class="list-group">
+    <li class="list-group-item list-group-item-info">My Events</li>
     <% for(let i = 0; i < locals.events.length; i++) {%>
     <a href="/events/<%= locals.events[i].url %>" class="list-group-item list-group-item-action">
       <div class="d-flex w-100 justify-content-between">
@@ -46,8 +46,8 @@
     <% } %>
   </div>
 
-  Events I've Responded To
   <div class="list-group">
+    <li class="list-group-item list-group-item-success">Events I've Responded To</li>
     <% for(let i = 0; i < locals.votedEvents.length; i++) {%>
     <a href="/events/<%= locals.votedEvents[i].url %>" class="list-group-item list-group-item-action">
       <div class="d-flex w-100 justify-content-between">
