@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>My Event</title>
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
+  <link rel="stylesheet" href="/vendor/border-box.css" type="text/css" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css"
+    integrity="sha384-Bfad6CLCknfcloXFOyFnlgtENryhrpZCe29RTifKEixXQZ38WheV+i/6YWSzkz3V" crossorigin="anonymous">
+
+  <!-- App CSS -->
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+
+  <!-- External JS -->
+  <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+
+  <!-- App JS -->
+  <script type="text/javascript" src="/scripts/createEvent.js"></script>
+</head>
+
+<body class='bg-light text-dark'>
+  <%- include('partials/_header') %>
+</body>
+
+<main class="container">
+  My Events
+  <div class="list-group">
+    <% for(let i = 0; i < locals.events.length; i++) {%>
+    <a href="/events/<%= locals.events[i].url %>" class="list-group-item list-group-item-action">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1"><%= locals.events[i].title %></h5>
+        <small>Attendies: <%= locals.events[i].attendies %> </small>
+      </div>
+      <p class=" mb-1"><%= locals.events[i].description %></p>
+    </a>
+    <% } %>
+  </div>
+
+  Events I've Responded To
+  <div class="list-group">
+    <% for(let i = 0; i < locals.votedEvents.length; i++) {%>
+    <a href="/events/<%= locals.votedEvents[i].url %>" class="list-group-item list-group-item-action">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1"><%= locals.votedEvents[i].title %></h5>
+        <small>Attendies: <%= locals.votedEvents[i].attendies %> </small>
+      </div>
+      <p class="mb-1"><%= locals.votedEvents[i].description %></p>
+    </a>
+    <% } %>
+  </div>
+</main>
+
+</html>

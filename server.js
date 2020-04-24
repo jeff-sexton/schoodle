@@ -17,6 +17,7 @@ const morgan = require('morgan');
 const userQueries = require('./lib/userQueries');
 const eventQueries = require('./lib/eventQueries');
 const votesQueries = require('./lib/voteQueries');
+const userEventsQueries = require('./lib/userEventsQueries');
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -82,12 +83,14 @@ const usersRoutes = require("./routes/users");
 const createRoutes = require("./routes/create");
 const eventsRoutes = require("./routes/events");
 const votesRoutes = require("./routes/votes");
+const myEventsRoutes = require("./routes/myEvents");
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/create", createRoutes());
 app.use("/events", eventsRoutes(eventQueries));
 app.use("/votes", votesRoutes(votesQueries));
+app.use("/myEvents", myEventsRoutes(userEventsQueries));
 // remove api for users?
 app.use("/api/users", usersRoutes(userQueries));
 
@@ -102,7 +105,7 @@ app.get('/login/:id', (req, res) => {
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 app.get("/", (req, res) => {
-  const data = {user: req.user};
+  const data = { user: req.user };
 
   res.redirect("/create");
   // res.json(user); // to check data representation
