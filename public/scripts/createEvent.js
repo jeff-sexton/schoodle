@@ -2,7 +2,7 @@
 /* global window */
 
 // Add time button actions
-const addTime = function(event) {
+const addTime = function (event) {
   event.preventDefault();
 
   const $heading = $('<th>').attr('scope', 'col').text('Event Time').append(
@@ -13,15 +13,15 @@ const addTime = function(event) {
 
   const $startDayTime = $('<td>').append(
     $('<div>').addClass('event-time-div').append(
-      $('<input>').attr({'type': 'date', 'name':'start_dates',}).prop('required',true),
-      $('<input>').attr({'type': 'time', 'name':'start_times'}).prop('required',true)
+      $('<input>').attr({ 'type': 'date', 'name': 'start_dates', }).prop('required', true),
+      $('<input>').attr({ 'type': 'time', 'name': 'start_times' }).prop('required', true)
     )
   );
 
   const $endDayTime = $('<td>').append(
     $('<div>').addClass('event-time-div').append(
-      $('<input>').attr({'type': 'date', 'name':'end_dates'}).prop('required',true),
-      $('<input>').attr({'type': 'time', 'name':'end_times'}).prop('required',true)
+      $('<input>').attr({ 'type': 'date', 'name': 'end_dates' }).prop('required', true),
+      $('<input>').attr({ 'type': 'time', 'name': 'end_times' }).prop('required', true)
     )
   );
 
@@ -32,7 +32,7 @@ const addTime = function(event) {
   $table.children("tbody").children("tr").last().append($endDayTime);
 
   // Attach event handler to just added header button
-  $('.remove-time').last().click(function(event) {
+  $('.remove-time').last().click(function (event) {
     event.preventDefault();
 
     const $header = $(this).parent('th');
@@ -49,7 +49,7 @@ const addTime = function(event) {
 };
 
 // CreateEvent button actions
-const createEvent = function(event) {
+const createEvent = function (event) {
   event.preventDefault();
 
   // removing because there is no way to localize the users arriving at the view page
@@ -73,13 +73,15 @@ const createEvent = function(event) {
   // Remove submit handler
   $(this).off('submit', createEvent);
   // bind new handler to give error message
-  $(this).submit(()=>{
+  $(this).submit(() => {
     console.log('Please only click submit once');
     return false;
   });
 
   $.post('/events', $(this).serialize())
-    .then(({event}) => { //more data is being passed if we switch to single page application...
+
+  console.log($(this).serialize())
+    .then(({ event }) => { //more data is being passed if we switch to single page application...
 
       // event.url contains the string URL to redirect to
       window.location.href = `/events/${event.url}`;
