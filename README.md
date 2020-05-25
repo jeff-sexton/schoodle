@@ -15,6 +15,11 @@ The application assigns sessions to keep track of unique vistiors and enable use
 
 Responsive elementes have also been included to allow the application to be used from a variety of screen sizes. 
 
+## Group Members
+
+* Jeff Sexton - https://github.com/jeff-sexton
+* Allen Li - https://github.com/AllenLiDev
+
 ## Final Product
 
 !["Create Page"](https://raw.githubusercontent.com/jeff-sexton/scoodle/master/docs/Schoodle_Create_Page.png)
