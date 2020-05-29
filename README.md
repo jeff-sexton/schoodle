@@ -13,7 +13,9 @@ There are no user accounts needed to use the application. Anyone can create an e
 
 The application assigns sessions to keep track of unique vistiors and enable users to revisit event pages to change their availabily.
 
-Responsive elementes have also been included to allow the application to be used from a variety of screen sizes. 
+Responsive elementes have also been included to allow the application to be used from a variety of screen sizes.
+
+Application has been hosted for demonstration purposes: https://schoodle-app.herokuapp.com/
 
 ## Group Members
 
