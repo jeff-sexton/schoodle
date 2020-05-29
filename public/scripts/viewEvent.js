@@ -2,34 +2,33 @@
 /* global window */
 /* global ClipboardJS */
 
-const submitVote = function(event) {
+const submitVote = function (event) {
   event.preventDefault();
-
 
   // Disable repeat form submissions
 
   // Remove submit handler
-  $(this).off('submit', submitVote);
+  $(this).off("submit", submitVote);
   // bind new handler to give error message
-  $(this).submit(()=>{
-    console.log('Please only click submit once');
+  $(this).submit(() => {
+    console.log("Please only click submit once");
     return false;
   });
 
   // Post form content just once.
-  $.post('/votes', $(this).serialize())
+  $.post("/votes", $(this).serialize())
     .then((data) => {
       window.location.reload();
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
       // call error handling here
     });
 };
 
 $(() => {
-  new ClipboardJS('.copy-url');
+  new ClipboardJS(".copy-url");
 
   // Attach handler to sumbit vote form submission
-  $('#vote-form').on('submit', submitVote);
+  $("#vote-form").on("submit", submitVote);
 });
